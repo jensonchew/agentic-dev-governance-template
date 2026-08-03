@@ -1,0 +1,4 @@
+# Local OpenCode dependency plumbing
+node_modules/
+package.json
+bun.lock

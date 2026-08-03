@@ -1,0 +1,304 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "agent": {
+    "development-orchestrator": {
+      "description": "Project Orchestrator for agentic delivery. Interprets user requests, decides whether work stays in discussion or moves into execution, plans tracks, coordinates specialists, and owns final delivery quality.",
+      "mode": "primary",
+      "model": "github-copilot/claude-opus-4.6",
+      "temperature": 0.2,
+      "prompt": "{file:./.agents/roles/development/orchestrator.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git status*": "allow",
+          "git worktree*": "allow",
+          "git branch*": "allow",
+          "git cherry-pick*": "allow",
+          "git stash*": "allow"
+        }
+      }
+    },
+    "design-analyst": {
+      "description": "Analyzes implementation options and recommends bounded change shape before specification or implementation. Operates in explore mode (broad option generation) or ground mode (repository-grounded pattern analysis and narrowing).",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.3,
+      "prompt": "{file:./.agents/roles/development/design-analyst.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git grep*": "allow",
+          "find*": "allow",
+          "rg*": "allow"
+        }
+      }
+    },
+    "architecture-challenger": {
+      "description": "Challenges default assumptions, identifies architectural risks and drift, and proposes stronger alternatives or future-state directions when a request may be hiding deeper design issues.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.5,
+      "prompt": "{file:./.agents/roles/development/architecture-challenger.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git grep*": "allow"
+        }
+      }
+    },
+    "ui-designer": {
+      "description": "Designs UI structure, interaction flows, and component usage for web features using the approved design system and product requirements.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.5,
+      "prompt": "{file:./.agents/roles/development/ui-designer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny"
+        }
+      }
+    },
+    "ui-reviewer": {
+      "description": "Reviews UI and UX proposals or implementations for consistency, usability, reuse, maintainability, and alignment with the design system.",
+      "mode": "subagent",
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "temperature": 0.1,
+      "prompt": "{file:./.agents/roles/development/ui-reviewer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny"
+        }
+      }
+    },
+    "migration-planner": {
+      "description": "Analyzes whether a change requires migration planning and defines safe migration sequences for schema changes, breaking API changes, and multi-phase rollouts.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.1,
+      "prompt": "{file:./.agents/roles/development/migration-planner.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git grep*": "allow",
+          "find*": "allow",
+          "rg*": "allow"
+        }
+      }
+    },
+    "spec-writer": {
+      "description": "Writes precise task specs for non-trivial work and saves them directly into the assigned worktree at docs/tasks/<task-id>.md so the implementer can read them from disk without any git commit.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.2,
+      "prompt": "{file:./.agents/roles/development/spec-writer.md}",
+      "permission": {
+        "edit": "allow",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git grep*": "allow"
+        }
+      }
+    },
+    "implementer": {
+      "description": "Implements approved task scope in an isolated worktree and writes the required tests.",
+      "mode": "subagent",
+      "model": "github-copilot/gpt-5.4",
+      "temperature": 0.3,
+      "prompt": "{file:./.agents/roles/development/implementer.md}",
+      "permission": {
+        "edit": "allow",
+        "bash": {
+          "*": "allow"
+        }
+      }
+    },
+    "reviewer": {
+      "description": "Reviews implementation against the task spec, repository rules, and quality expectations. Does not edit code.",
+      "mode": "subagent",
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "temperature": 0.1,
+      "prompt": "{file:./.agents/roles/development/reviewer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "find*": "allow",
+          "rg*": "allow"
+        }
+      }
+    },
+    "security-reviewer": {
+      "description": "Reviews implementation diffs for application-level security issues including auth/authz logic, input validation, data exposure, injection risks, and secure coding practices.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.1,
+      "prompt": "{file:./.agents/roles/development/security-reviewer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git grep*": "allow"
+        }
+      }
+    },
+    "delivery-orchestrator": {
+      "description": "Delivery Orchestrator for last-mile engineering. Interprets delivery review requests, development handoffs, and platform concerns; decides whether work stays in discussion or moves into structured delivery evaluation.",
+      "mode": "primary",
+      "model": "github-copilot/claude-opus-4.6",
+      "temperature": 0.2,
+      "prompt": "{file:./.agents/roles/delivery/orchestrator.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git status*": "allow",
+          "find*": "allow",
+          "grep*": "allow",
+          "rg*": "allow",
+          "ls*": "allow",
+          "tree*": "allow",
+          "cat*": "allow"
+        }
+      }
+    },
+    "pipeline-engineer": {
+      "description": "Reviews CI/CD pipeline design, build/release flow, artifact handling, promotion strategy, and rollback readiness.",
+      "mode": "subagent",
+      "model": "github-copilot/gpt-5.3",
+      "temperature": 0.2,
+      "prompt": "{file:./.agents/roles/delivery/pipeline-engineer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "ls*": "allow",
+          "cat*": "allow",
+          "grep*": "allow",
+          "rg*": "allow",
+          "git diff*": "allow"
+        }
+      }
+    },
+    "platform-evaluator": {
+      "description": "Evaluates runtime platform fit, hosting topology, scaling approach, cost shape, and proportionality. Combines architecture assessment with skeptical cost challenge.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.2,
+      "prompt": "{file:./.agents/roles/delivery/platform-evaluator.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "ls*": "allow",
+          "cat*": "allow",
+          "grep*": "allow",
+          "rg*": "allow",
+          "git diff*": "allow"
+        }
+      }
+    },
+    "devsecops-reviewer": {
+      "description": "Reviews security posture in the delivery path including secrets, IAM, exposure, and supply chain risks.",
+      "mode": "subagent",
+      "model": "github-copilot/gpt-5.3",
+      "temperature": 0.1,
+      "prompt": "{file:./.agents/roles/delivery/devsecops-reviewer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "ls*": "allow",
+          "cat*": "allow",
+          "grep*": "allow",
+          "rg*": "allow"
+        }
+      }
+    },
+    "observability-engineer": {
+      "description": "Reviews logging, metrics, tracing, alerting, and operational readiness.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.2,
+      "prompt": "{file:./.agents/roles/delivery/observability-engineer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "ls*": "allow",
+          "cat*": "allow",
+          "grep*": "allow",
+          "rg*": "allow"
+        }
+      }
+    },
+    "context-mapper": {
+      "description": "Maps affected files, dependencies, tests, risks, boundaries, and relevant repository evidence before non-trivial implementation or delivery evaluation.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.1,
+      "prompt": "{file:./.agents/roles/shared/context-mapper.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git grep*": "allow",
+          "find*": "allow",
+          "rg*": "allow"
+        }
+      }
+    },
+    "docs-updater": {
+      "description": "Updates documentation and repository memory to reflect approved changes, current repository reality, or finalized governance and charter decisions.",
+      "mode": "subagent",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "temperature": 0.2,
+      "prompt": "{file:./.agents/roles/shared/docs-updater.md}",
+      "permission": {
+        "edit": "allow",
+        "bash": {
+          "*": "deny",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git status*": "allow"
+        }
+      }
+    }
+  }
+}
