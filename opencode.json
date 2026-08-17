@@ -4,6 +4,12 @@
     "AGENTS.md"
   ],
   "agent": {
+    "build": {
+      "model": "github-copilot/claude-sonnet-4.6"
+    },
+    "plan": {
+      "model": "github-copilot/claude-opus-4.6"
+    },
     "development-orchestrator": {
       "description": "Project Orchestrator for agentic delivery. Interprets user requests, decides whether work stays in discussion or moves into execution, plans tracks, coordinates specialists, and owns final delivery quality.",
       "mode": "primary",
