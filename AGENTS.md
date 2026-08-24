@@ -75,8 +75,36 @@ Full behavioral rules: [`.agents/governance/shared-rules.md`](.agents/governance
 - [Output format](.agents/governance/output-format.md)
 - [Handoff template](docs/templates/HANDOFF.md)
 
+### MGF / AI Verify compliance documents
+
+- [Accountability register](docs/governance/accountability-register.md) — named human owners per charter
+- [Human oversight model](docs/governance/human-oversight-model.md) — risk-tiered action classification
+- [Incident reporting](docs/governance/incident-reporting.md) — what to report and how
+- [Safety assessment](docs/governance/safety-assessment.md) — risk identification and residual posture
+
+Aligned with: IMDA MGF for Agentic AI (2026); AI Verify Testing Framework (11 principles).
+
+---
+
+## Vocabulary reference
+
+When AI coding terminology is unclear, consult the **AI Coding Dictionary**:
+https://aicodingdictionary.com
+
+Covers: tokens, context windows, agents, MCP, handoffs, specs, tickets, compaction, hallucination, attention degradation, and more. Use this to resolve ambiguity in terminology used across governance files and skill instructions.
+
 ---
 
 ## Final principle
 
 When in doubt: preserve governance, keep charters separate, make handoffs explicit, ground conclusions in evidence, escalate rather than improvise.
+
+---
+
+## End-User Responsibility & Education
+
+To safely operate within this agentic framework, human users must:
+- Understand when and how agents are being used
+- Actively oversee agent actions rather than relying on automation bias
+- Retain the foundational software engineering skills necessary to review, audit, and correct agent-generated code and infrastructure
+- Know how to manually intervene and stop an agent if it behaves unexpectedly

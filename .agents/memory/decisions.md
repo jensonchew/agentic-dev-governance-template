@@ -33,9 +33,17 @@ Each entry records what was decided, why, and what alternatives were rejected.
 **Alternatives rejected:** Keep monolithic files (violates progressive disclosure, wastes context), split into too many tiny files (fragmentation).
 **Rationale:** Agents load the sub-file relevant to their current phase. Hub files orient without overwhelming.
 
-## 2026-05-28 — Three-tier precedence (Governance > Instructions > Task)
+## 2026-08-24 — Pin explicit models for `build` and `plan` primary agents
 
-**Context:** Original had 8 precedence levels creating confusion about which rule wins.
-**Decision:** Flatten to 3 tiers. Governance (AGENTS.md + charter) > Instructions (engineering rules + repo context) > Task (role file + spec + orchestrator).
-**Alternatives rejected:** Keep 8 levels (too complex to remember), 2 levels (not granular enough to resolve real conflicts).
-**Rationale:** Any conflict can be resolved by asking "which tier?" — simple, memorable, enforceable.
+**Context:** `build` and `plan` had no `model` set in `opencode.json`, so they inherited whichever model was selected in the UI — inconsistent across sessions.
+**Decision:** Pin `build` to `github-copilot/claude-sonnet-4.6` (cost-effective for everyday coding) and `plan` to `github-copilot/claude-opus-4.6` (deeper reasoning for planning and analysis).
+**Alternatives rejected:** Opus for both (unnecessary cost for build), Sonnet for both (plan benefits from deeper reasoning), leave unset (too session-dependent).
+**Rationale:** Aligns with the existing tiering strategy — orchestrators use Opus, everyday workers use Sonnet. Removes dependency on UI state.
+
+## 2026-08-24 — Add Matt Pocock engineering skills to `.agents/skills/`
+
+**Context:** The skills inventory covered governance-aligned patterns (grill-me, tdd, diagnose, handoff) but lacked user-invokable workflow bridges: spec synthesis, ticket breakdown, end-to-end implement, code review, research, and conflict resolution.
+**Decision:** Add 6 skills from `mattpocock/skills`: `to-spec`, `to-tickets`, `implement`, `code-review`, `research`, `resolving-merge-conflicts`. Placed in `.agents/skills/` alongside existing governance skills.
+**Alternatives rejected:** Full `npx skills@latest add` install (would add duplicates of grill-me, grill-with-docs, tdd, diagnose, handoff already present; also adds non-engineering skills not relevant here), skip entirely (leaves workflow gap between planning and implementation).
+**Rationale:** These skills fill the user-facing workflow layer: spec synthesis feeds the spec-writer agent, tickets feed the implementer, code-review provides a user-invokable complement to the reviewer subagent, research supports evidence-before-assertion governance rules, and conflict resolution supports the implementer's multi-branch work.
+
