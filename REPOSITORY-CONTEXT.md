@@ -23,219 +23,148 @@ Do not use this file for:
 
 ## Repository identity
 
-- Name: `<replace-with-repository-name>`
-- Purpose: `<what this repo does>`
-- Business domain: `<optional>`
-- Default branch: `<main-or-other>`
-- Repository type: `.NET + Angular monorepo`
-- Frontend package manager: `Yarn`
+- Name: `agentic-dev-governance-template`
+- Purpose: Stack-agnostic agentic development governance template. Provides multi-charter agent governance (Development + Delivery), role definitions, permission matrices, lifecycle gates, escalation rules, and reusable skills for structured AI-assisted software delivery.
+- Business domain: Developer tooling / AI agent governance
+- Default branch: `master`
+- Active working branch: `opencode/glowing-star`
+- Repository type: Governance template (no application code — markdown, JSON config, skill files only)
+- Frontend package manager: N/A
 
 ---
 
 ## Structure overview
 
-Fill in the real paths after customizing the template.
+This is a governance template — there is no application code. Structure is documentation and config only.
 
-### Backend
-
-- Solution file: `<path-to-solution-file>`
-- Main backend root: `<for-example-src/backend>`
-- Primary API project: `<required path>`
-- Application layer project: `<required path>`
-- Core project: `<required path>`
-- Infrastructure project: `<required path>`
-- Worker or workflow projects: `<paths-or-none>`
-
-### Frontend
-
-- Angular workspace root: `<path-to-angular-workspace>`
-- Main Angular app: `<path-or-project-name>`
-- Shared libraries: `<paths-or-none>`
-- UI design system or shared component library: `<path-or-none>`
-- Yarn version: `<version>`
-- Frontend lockfile: `yarn.lock`
-
-### Other important areas
-
-- Scripts: `<path-or-none>`
-- Docs: `<path-or-none>`
-- Infra or deployment: `<path-or-none>`
-- Generated or vendor-managed paths to avoid editing: `<paths-or-none>`
+- Agent governance hub: `AGENTS.md`
+- Repository context (this file): `REPOSITORY-CONTEXT.md`
+- OpenCode runtime config: `opencode.json`
+- Charter definitions: `.agents/development.md`, `.agents/delivery.md`
+- Agent role files: `.agents/roles/development/`, `.agents/roles/delivery/`, `.agents/roles/shared/`
+- Engineering instructions: `.agents/instructions.md`, `.agents/instructions/`
+- Governance rules: `.agents/governance/`
+- Reusable skills: `.agents/skills/`
+- OpenCode skills (UI/frontend): `.opencode/skills/`
+- Institutional memory: `.agents/memory/decisions.md`, `.agents/memory/lessons.md`
+- ADRs: `docs/adr/`
+- Handoff template: `docs/templates/HANDOFF.md`
 
 ---
 
 ## Architecture notes
 
-Document only what is true in this repository.
+This repository is a governance template, not an application. Architecture notes cover the agent system design.
 
-### Backend architecture
-
-- Architecture style: `modular monolith with Api/Application/Core/Infrastructure segregation`
-- Key boundaries: `<document how Api/Application/Core/Infrastructure responsibilities are enforced in this repository>`
-- API conventions: `<controllers / minimal APIs / endpoint pattern>`
-- Background processing: `<none / hosted services / workers / workflows / queues>`
-
-### Frontend architecture
-
-- Angular version: `<version>`
-- Workspace style: `<single app / app plus libs / nx / other>`
-- State approach: `<signals / RxJS / ngrx / mixed / other>`
-- Routing approach: `<brief note>`
-- Shared UI patterns: `<brief note>`
-
-### Cross-stack contracts
-
-- Shared DTO or API contract location: `<path-or-none>`
-- Contract generation or sync approach: `<manual / generated / shared project / other>`
+- Governance tier 1 (highest): `AGENTS.md` + charter files — cannot be overridden by lower tiers
+- Governance tier 2: `.agents/instructions.md` + topic sub-files + `REPOSITORY-CONTEXT.md`
+- Governance tier 3 (lowest): Role files, task specs, orchestrator instructions, skill packs
+- Context loading strategy: Just-in-time — only `AGENTS.md` auto-loaded; all other files loaded on demand
+- Role/runtime split: Universal role content in `.agents/roles/`; OpenCode-specific config (model, temperature, permissions) in `opencode.json` via `prompt: "{file:...}"` pointers
+- Charter isolation: Development and Delivery charters are hard-separated; cross-charter work requires the HANDOFF template
 
 ---
 
-## Data and integrations
+## Agent configuration
 
-### Persistence
+### Primary agents (`opencode.json`)
 
-- Primary database: `<postgresql / sql server / other>`
-- Data access approach: `<ef core / dapper / mixed / other>`
-- Migration approach: `<ef migrations / sql scripts / other>`
+| Agent | Model | Mode | Can edit files |
+|-------|-------|------|---------------|
+| `build` | `github-copilot/claude-sonnet-4.6` | primary | yes |
+| `plan` | `github-copilot/claude-opus-4.6` | primary | ask |
+| `development-orchestrator` | `github-copilot/claude-opus-4.6` | primary | no |
+| `delivery-orchestrator` | `github-copilot/claude-opus-4.6` | primary | no |
 
-### Messaging and workflows
+### Key subagents
 
-- Messaging: `<none / rabbitmq / sqs / service bus / other>`
-- Background job system: `<none / hangfire / temporal / other>`
-- Canonical patterns to preserve: `<brief note>`
+| Agent | Model | Purpose |
+|-------|-------|---------|
+| `implementer` | `github-copilot/gpt-5.4` | Full code implementation |
+| `spec-writer` | `github-copilot/claude-sonnet-4.6` | Writes task specs to disk |
+| `reviewer` | `github-copilot/gemini-3.1-pro-preview` | Independent code review |
+| `security-reviewer` | `github-copilot/claude-sonnet-4.6` | Application security review |
+| `context-mapper` | `github-copilot/claude-sonnet-4.6` | Pre-implementation context mapping |
+| `docs-updater` | `github-copilot/claude-sonnet-4.6` | Documentation updates |
 
-### External integrations
+### Agent bash permissions
 
-- Critical external services: `<list-or-none>`
-- Auth or identity provider: `<list-or-none>`
-- Files or storage services: `<list-or-none>`
-
----
-
-## Agent bash permissions
-
-Agents that run build, test, or lint commands use the patterns defined here.
-The `/setup` command generates this section. If your build tools change,
-update these patterns and the corresponding agent role files.
-
-### Build commands (used by: context-mapper, design-investigator, implementer, reviewer)
-- `<build-command-pattern>*`
-
-### Test commands (used by: implementer, reviewer)
-- `<test-command-pattern>*`
-
-### Lint commands (used by: reviewer)
-- `<lint-command-pattern>*`
-
-Example for .NET + Angular:
-```
-dotnet build*, dotnet test*, ng build*, ng test*, yarn build*, yarn test*, yarn lint*
-```
-
-Example for Python + React:
-```
-python -m pytest*, npm run build*, npm run test*, npm run lint*
-```
-
-Example for Go + Vue:
-```
-go build*, go test*, npm run build*, npm run test*, npm run lint*
-```
-
----
-
-## Agent tooling
+No build/test/lint commands — this is a docs/config-only repo. Agents use git read commands only (log, diff, show, status).
 
 ### code-memory-mcp
 
-Status: `<available / not configured>`
-
-When available, `code-memory-mcp` provides a persistent memory tier for
-symbol lookup, dependency mapping, usage tracing, and institutional notes.
-
-Agents should use it as their primary discovery mechanism before falling
-back to git commands and file reads. See individual agent role files for
-tool-specific workflow guidance.
-
-Key tools: `stats`, `get_directory_tree`, `get_module_map`, `lookup_symbol`,
-`get_file_symbols`, `find_usages`, `get_dependencies`, `search`,
-`add_note`, `get_notes`
+Status: `not configured`
 
 ---
 
 ## Canonical commands
 
-Replace these with the real commands for this repository.
+This repository has no build, test, or lint pipeline — it is markdown and JSON only.
 
-### Setup
+### Git workflow
 
-- Restore backend dependencies: `<command>`
-- Install frontend dependencies: `yarn install`
-- Local environment setup: `<command-or-steps>`
+- Active branch: `opencode/glowing-star`
+- Remote: `https://github.com/jensonchew/agentic-dev-governance-template.git`
+- Push: `git push` (upstream set to `origin/opencode/glowing-star`)
+- Open PR: `gh pr create --base master`
 
-### Build
+### Skills installation
 
-- Build backend: `<command>`
-- Build frontend: `yarn build`
-- Build full repo: `<command-or-none>`
-
-### Test
-
-- Run backend unit tests: `<command>`
-- Run backend integration tests: `<command-or-none>`
-- Run frontend tests: `yarn test`
-- Run end-to-end tests: `<command-or-none>`
-
-### Quality checks
-
-- Lint frontend: `yarn lint`
-- Format check: `<command-or-none>`
-- Type check: `<command-or-none>`
-
-### Run locally
-
-- Run backend: `<command>`
-- Run frontend: `yarn start`
-- Run full stack: `<command-or-steps>`
+To add new skills from mattpocock/skills:
+```
+npx skills@latest add mattpocock/skills
+```
+Place skill files under `.agents/skills/<skill-name>/SKILL.md`.
 
 ---
 
-## Testing notes
+## Skills inventory
 
-- Backend test framework: `<xunit / nunit / mstest / other>`
-- Frontend test framework: `<karma / jest / vitest / other>`
-- E2E framework: `<playwright / cypress / none / other>`
-- Test data or container dependencies: `<brief note>`
-- Slow, flaky, or environment-sensitive suites: `<brief note or none>`
+### `.agents/skills/` (governance-aligned, agent-invokable)
+
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| `grill-me` | mattpocock/skills | Interview-style planning session |
+| `grill-with-docs` | mattpocock/skills | Planning + domain model + inline ADRs |
+| `tdd` | mattpocock/skills | Red-green-refactor TDD loop |
+| `diagnose` | mattpocock/skills | Disciplined bug diagnosis |
+| `handoff` | mattpocock/skills | Compact conversation into handoff doc |
+| `zoom-out` | internal | Higher-level codebase perspective |
+| `caveman` | internal | Ultra-compressed communication mode |
+| `to-spec` | mattpocock/skills | Synthesize conversation into structured spec |
+| `to-tickets` | mattpocock/skills | Break spec/plan into tracer-bullet tickets |
+| `implement` | mattpocock/skills | End-to-end implement with TDD + code-review |
+| `code-review` | mattpocock/skills | Two-axis parallel review (Standards + Spec) |
+| `research` | mattpocock/skills | Background agent for primary-source research |
+| `resolving-merge-conflicts` | mattpocock/skills | Intent-traced merge conflict resolution |
+
+### `.opencode/skills/` (OpenCode UI skills)
+
+Angular component, di, directives, forms, http, routing, signals, ssr, testing, tooling, design-system, frontend-design, setup, theme-factory, web-artifacts-builder, webapp-testing.
 
 ---
 
 ## Local development constraints
 
-- Required tools and versions: `<dotnet / node / package manager / database / other>`
-- Package manager policy: `Use Yarn for frontend dependencies and scripts unless the repository standard is intentionally changed`
-- OS-specific notes: `<brief note or none>`
-- Secrets handling notes: `<brief note or none>`
-- Paths or files agents should never commit: `<brief note>`
+- No build toolchain required — this is a docs/config-only repository
+- Git worktree note: the active worktree's `.git` file points to the Downloads folder which has a partial `.git` dir. Work via the cloned copy at `C:\Users\jensonc\AppData\Local\Temp\opencode\gov-template` or re-clone from remote.
+- Agents should never commit: secrets, generated files, or personal credentials
 
 ---
 
 ## Known baseline issues
 
-List only issues that already exist and should not be misreported as regressions.
-
-- `<known issue 1>`
-- `<known issue 2>`
-- `<or write none currently documented>`
+- Git worktree reference is broken in the local worktree at `C:\Users\jensonc\.local\share\opencode\worktree\...\glowing-star`. The `.git` file points to a `worktrees/glowing-star` path that no longer exists in the Downloads folder. Use the temp clone at `C:\Users\jensonc\AppData\Local\Temp\opencode\gov-template` for all git operations until the worktree is re-registered or re-cloned.
 
 ---
 
 ## Repository-specific conventions
 
-- Naming conventions: `<brief note>`
-- Branching or PR conventions: `<brief note>`
-- Documentation expectations: `<brief note>`
-- Areas that are intentionally inconsistent for historical or migration reasons: `<brief note>`
+- Naming conventions: kebab-case for all files and directories
+- Branching convention: `opencode/<feature-name>` for agent-created branches
+- PR convention: merge `opencode/glowing-star` → `master` via GitHub PR
+- Documentation expectations: update `REPOSITORY-CONTEXT.md` and `.agents/memory/decisions.md` after any structural or config change
+- Skills convention: agent-invokable skills go in `.agents/skills/`; OpenCode UI skills go in `.opencode/skills/`
 
 ---
 
