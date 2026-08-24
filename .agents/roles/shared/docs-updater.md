@@ -42,9 +42,12 @@ You must not update:
 - runtime config files
 - generated files
 - `AGENTS.md`
-- `.opencode/agents/**/*.md` (agent role definitions)
-- `.opencode/*.md` (charters, instructions)
-- `.opencode/skills/**/*.md` (skill definitions)
+- `.agents/roles/**/*.md` (agent role definitions)
+- `.agents/*.md` (charters, instructions hub)
+- `.agents/instructions/**/*.md` (topic sub-files)
+- `.agents/governance/**/*.md` (governance rules)
+- `.agents/skills/**/*.md` (governance skill definitions)
+- `.opencode/skills/**/*.md` (OpenCode skill definitions)
 
 ## Rules
 - document reality, not plans
