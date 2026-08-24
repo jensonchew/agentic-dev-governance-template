@@ -47,6 +47,19 @@ Each entry records what was decided, why, and what alternatives were rejected.
 **Alternatives rejected:** Full `npx skills@latest add` install (would add duplicates of grill-me, grill-with-docs, tdd, diagnose, handoff already present; also adds non-engineering skills not relevant here), skip entirely (leaves workflow gap between planning and implementation).
 **Rationale:** These skills fill the user-facing workflow layer: spec synthesis feeds the spec-writer agent, tickets feed the implementer, code-review provides a user-invokable complement to the reviewer subagent, research supports evidence-before-assertion governance rules, and conflict resolution supports the implementer's multi-branch work.
 
+## 2026-08-24 — Align governance docs with IMDA MGF for Agentic AI and AI Verify
+
+**Context:** The template had robust technical governance (role files, permissions, escalation rules) but no human-facing compliance documentation mapping it to recognised AI governance frameworks. A gap remediation pass identified four missing artefacts.
+**Decision:** Create four documents under `docs/governance/` explicitly aligned to IMDA's Model AI Governance Framework for Agentic AI (v1.0, Jan 2026) and Singapore's AI Verify testing principles:
+- `safety-assessment.md` — risk register with residual posture (IMDA MGF + AI Verify 4/5/6)
+- `accountability-register.md` — named human owners per charter (IMDA MGF Accountability + AI Verify 9)
+- `human-oversight-model.md` — Tier 1/2/3 risk-tiered oversight model (IMDA MGF Human Oversight + AI Verify 10)
+- `incident-reporting.md` — incident definition, severity tiers, reporting path (IMDA MGF + AI Verify 4)
+
+Companion updates: `shared-rules.md` (reversibility principle + prompt injection defence), `escalation.md` (irreversible action + injection triggers), `output-format.md` (terminology fix), `AGENTS.md` (compliance document references).
+**Alternatives rejected:** Reference frameworks only in README (insufficient — agents and auditors need structured, loadable documents); create a single combined compliance doc (harder to load on demand; mixes concerns).
+**Rationale:** IMDA MGF for Agentic AI directly addresses the risk profile of this template (multi-agent, autonomous actions, tool use). AI Verify provides testable principles. Explicit alignment means the template is audit-ready out of the box and gives teams a documented compliance basis when adapting it for regulated environments.
+
 ## 2026-08-24 — Model ID validation: manual skill + weekly CI, not auto-on-open
 
 **Context:** Four agent model IDs in `opencode.json` were invalid (`gemini-3.1-pro-preview`, `gpt-5.3`). Discussed whether to auto-validate on IDE open, require manual triggering, or use CI.
