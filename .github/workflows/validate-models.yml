@@ -1,0 +1,159 @@
+name: Validate model IDs
+
+on:
+  schedule:
+    # Run every Monday at 09:00 UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    # Allow manual trigger from the Actions tab
+
+jobs:
+  validate-models:
+    name: Check opencode.json model IDs against Copilot API
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch live Copilot model list
+        id: fetch-models
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch the live model list from the GitHub Copilot API
+          RESPONSE=$(curl -sf \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Copilot-Integration-Id: vscode-chat" \
+            https://api.githubcopilot.com/models) || {
+            echo "ERROR: Failed to fetch model list from Copilot API" >&2
+            exit 1
+          }
+
+          # Extract all model IDs that support chat completions or messages endpoints
+          echo "$RESPONSE" | jq -r '
+            .data[]
+            | select(
+                (.supported_endpoints | contains(["/chat/completions"]))
+                or (.supported_endpoints | contains(["/v1/messages"]))
+              )
+            | .id
+          ' | sort > /tmp/valid_model_ids.txt
+
+          echo "Valid chat-capable models:"
+          cat /tmp/valid_model_ids.txt
+
+      - name: Extract model IDs from opencode.json
+        id: extract-models
+        run: |
+          # Extract all model values from opencode.json, strip the provider prefix
+          jq -r '
+            .agent
+            | to_entries[]
+            | select(.value.model != null)
+            | {agent: .key, model: .value.model}
+            | "\(.agent)|\(.model)"
+          ' opencode.json > /tmp/configured_models.txt
+
+          echo "Configured models:"
+          cat /tmp/configured_models.txt
+
+      - name: Diff and report
+        id: diff
+        run: |
+          INVALID_COUNT=0
+          REPORT=""
+
+          while IFS='|' read -r agent full_model_id; do
+            # Strip provider prefix (github-copilot/)
+            bare_id="${full_model_id#github-copilot/}"
+
+            if grep -qx "$bare_id" /tmp/valid_model_ids.txt; then
+              STATUS="valid"
+            else
+              STATUS="invalid"
+              INVALID_COUNT=$((INVALID_COUNT + 1))
+              REPORT="${REPORT}\n- **${agent}**: \`${full_model_id}\` — not found in live API"
+            fi
+
+            echo "  $agent: $full_model_id [$STATUS]"
+          done < /tmp/configured_models.txt
+
+          echo "invalid_count=$INVALID_COUNT" >> $GITHUB_OUTPUT
+
+          if [ "$INVALID_COUNT" -gt 0 ]; then
+            echo "REPORT<<EOF" >> $GITHUB_ENV
+            echo -e "$REPORT" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+          fi
+
+      - name: Open issue if invalid models found
+        if: steps.diff.outputs.invalid_count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if an issue is already open for this
+          EXISTING=$(gh issue list \
+            --label "model-drift" \
+            --state open \
+            --json number \
+            --jq '.[0].number' 2>/dev/null || echo "")
+
+          BODY="## Invalid model IDs detected in \`opencode.json\`
+
+          The weekly model validation workflow found model IDs that are no longer available
+          in the GitHub Copilot API.
+
+          ### Invalid models
+
+          ${{ env.REPORT }}
+
+          ### How to fix
+
+          Run \`/check-models\` in OpenCode for suggested replacements, or update
+          \`opencode.json\` manually with verified model IDs from the
+          [Copilot models API](https://api.githubcopilot.com/models).
+
+          ### Prevent recurrence
+
+          This issue is created automatically by \`.github/workflows/validate-models.yml\`.
+          It will close automatically when no invalid models are detected on the next run.
+
+          ---
+          *Detected by: validate-models workflow | $(date -u '+%Y-%m-%d')*"
+
+          if [ -n "$EXISTING" ]; then
+            echo "Updating existing issue #$EXISTING"
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            echo "Opening new issue"
+            gh issue create \
+              --title "Model drift: invalid model IDs in opencode.json ($(date -u '+%Y-%m-%d'))" \
+              --body "$BODY" \
+              --label "model-drift" \
+              || gh issue create \
+                --title "Model drift: invalid model IDs in opencode.json ($(date -u '+%Y-%m-%d'))" \
+                --body "$BODY"
+          fi
+
+      - name: Close stale model-drift issues if all valid
+        if: steps.diff.outputs.invalid_count == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Close any open model-drift issues since everything is now valid
+          gh issue list \
+            --label "model-drift" \
+            --state open \
+            --json number \
+            --jq '.[].number' | \
+          while read -r issue_num; do
+            gh issue close "$issue_num" \
+              --comment "All model IDs in \`opencode.json\` are now valid. Closing automatically."
+            echo "Closed issue #$issue_num"
+          done || true
+
+          echo "All model IDs are valid. No action required."
