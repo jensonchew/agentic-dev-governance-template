@@ -12,8 +12,8 @@ jobs:
     name: Check opencode.json model IDs against Copilot API
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read   # checkout only
+      issues: write    # open, comment, and close model-drift issues
 
     steps:
       - name: Checkout
