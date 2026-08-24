@@ -95,6 +95,11 @@ No build/test/lint commands — this is a docs/config-only repo. Agents use git 
 
 Status: `not configured`
 
+### Vocabulary reference
+
+**AI Coding Dictionary**: https://aicodingdictionary.com
+Plain-English definitions for AI coding terms used throughout this repo's governance files and skill instructions (tokens, context windows, agents, MCP, handoffs, specs, tickets, compaction, hallucination, attention degradation, and more).
+
 ---
 
 ## Canonical commands
