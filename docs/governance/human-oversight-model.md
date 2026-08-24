@@ -89,6 +89,16 @@ orchestrator cherry-picks to target branch
 
 No code reaches a remote branch without passing through at least one human checkpoint.
 
+### Guarding against automation bias
+
+To prevent "automation bias" (the tendency for humans to rubber-stamp agent recommendations),
+oversight checkpoints must be meaningful. Humans reviewing an agent's work must:
+- Verify the agent's stated Assumptions and Confidence levels
+- Review the independent `reviewer` agent's output, not just the `implementer`'s code
+- Manually run the test suite or inspect the CI results before confirming a merge
+- Explicitly challenge any claim of "production readiness"
+
+
 ---
 
 ## Prompt injection as an oversight concern

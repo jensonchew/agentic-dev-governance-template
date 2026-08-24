@@ -98,3 +98,13 @@ Covers: tokens, context windows, agents, MCP, handoffs, specs, tickets, compacti
 ## Final principle
 
 When in doubt: preserve governance, keep charters separate, make handoffs explicit, ground conclusions in evidence, escalate rather than improvise.
+
+---
+
+## End-User Responsibility & Education
+
+To safely operate within this agentic framework, human users must:
+- Understand when and how agents are being used
+- Actively oversee agent actions rather than relying on automation bias
+- Retain the foundational software engineering skills necessary to review, audit, and correct agent-generated code and infrastructure
+- Know how to manually intervene and stop an agent if it behaves unexpectedly
