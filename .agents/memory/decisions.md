@@ -47,3 +47,31 @@ Each entry records what was decided, why, and what alternatives were rejected.
 **Alternatives rejected:** Full `npx skills@latest add` install (would add duplicates of grill-me, grill-with-docs, tdd, diagnose, handoff already present; also adds non-engineering skills not relevant here), skip entirely (leaves workflow gap between planning and implementation).
 **Rationale:** These skills fill the user-facing workflow layer: spec synthesis feeds the spec-writer agent, tickets feed the implementer, code-review provides a user-invokable complement to the reviewer subagent, research supports evidence-before-assertion governance rules, and conflict resolution supports the implementer's multi-branch work.
 
+## 2026-08-24 — Model ID validation: manual skill + weekly CI, not auto-on-open
+
+**Context:** Four agent model IDs in `opencode.json` were invalid (`gemini-3.1-pro-preview`, `gpt-5.3`). Discussed whether to auto-validate on IDE open, require manual triggering, or use CI.
+**Decision:** Two-mechanism approach: `/check-models` skill for on-demand manual validation; `.github/workflows/validate-models.yml` for automated weekly checks that open a `model-drift` issue if drift is found.
+**Alternatives rejected:** Auto-modify `opencode.json` on session start (mutates config while session is already loaded; breaks offline; model replacement requires judgment not just lookup); single manual skill only (relies on humans remembering to run it).
+**Rationale:** Manual skill covers immediate needs; CI catches drift automatically without session impact. Neither modifies files autonomously — both surface findings for human review and approval.
+
+## 2026-08-24 — Four-tier model tiering strategy for agent roles
+
+**Context:** Model assignments in `opencode.json` had drifted (invalid IDs, no documented rationale). Needed a principled basis for assigning and upgrading models.
+**Decision:** Tier 1 Opus (orchestrators/plan), Tier 2 Sonnet (specialists/everyday), Tier 3 Gemini flash (independent review — different vendor perspective), Tier 4 GPT-5.4 (implementation/pipeline). Documented in `docs/adr/0003-model-tiering-strategy.md`.
+**Alternatives rejected:** Single model for all (no cost optimisation, no independent-review benefit); ad hoc per-agent assignment (already caused the drift problem); always use newest/most powerful (cost-prohibitive, unnecessary for bounded tasks).
+**Rationale:** Tiering aligns cost with reasoning demand. Different vendor for review reduces systematic blind spots. Documented strategy prevents future unanchored drift.
+
+## 2026-08-24 — CI workflow permissions: minimum required, not convenience defaults
+
+**Context:** The `validate-models.yml` workflow was initially written with `contents: write` and `pull-requests: write` — both unnecessary for a read-then-report-issues workflow.
+**Decision:** Tighten to `contents: read` (checkout only) and `issues: write` (open/comment/close model-drift issues).
+**Alternatives rejected:** Keep `contents: write` (opens unnecessary blast radius — scheduled workflow could push commits); keep `pull-requests: write` (workflow never touches PRs).
+**Rationale:** Principle of least privilege. A scheduled read-and-report workflow has no legitimate need to write to the repository or manage PRs.
+
+## 2026-08-24 — Session memory automation: three-layer agnostic approach
+
+**Context:** Repository memory was only updated on explicit human request. Sessions ended with no decisions or lessons recorded. Any new session — in any IDE — started blind.
+**Decision:** Three layers: (1) Governance rule in both orchestrator `lifecycle.md` files — mandatory `docs-updater` invocation before session close; (2) `docs-updater` guidance in both `specialist-rules.md` files; (3) `.agents/skills/wrap-up/SKILL.md` — IDE-agnostic fallback skill for non-orchestrator sessions, plus `/wrap-up` command in `opencode.json` as OpenCode-specific convenience trigger.
+**Alternatives rejected:** OpenCode session-end hook (not supported by OpenCode); auto-commit memory on every turn (too noisy, not meaningful); memory update only via orchestrator (misses ad-hoc and skill-led sessions).
+**Rationale:** Governance rule covers orchestrator-led sessions automatically. Wrap-up skill covers everything else with a single command. Agnostic layer (`.agents/skills/`) ensures the mechanism works in any IDE, not just OpenCode.
+
