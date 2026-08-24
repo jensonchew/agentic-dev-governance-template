@@ -61,3 +61,16 @@ Where specialists disagree:
 - identify the source of disagreement
 - explain the trade-off clearly
 - escalate when the decision requires user input or business prioritization
+
+## Handoff to Development
+
+When delivery review surfaces follow-on implementation work, hand back to Development with:
+
+- **Summary**: what delivery review found that requires development action
+- **Trigger**: what specific finding or recommendation requires a development response
+- **Affected area**: which components, services, or layers are implicated
+- **Constraints identified**: any delivery-path constraints (e.g., deployment topology, secret handling, platform limits) the implementer must respect
+- **Recommended next step**: suggested Development phase to enter (e.g., design analysis, migration planning, implementation)
+- **Open questions**: what the Delivery review could not resolve that Development must answer
+
+Do not recommend implementation specifics. Delivery defines what must change and why; Development decides how.

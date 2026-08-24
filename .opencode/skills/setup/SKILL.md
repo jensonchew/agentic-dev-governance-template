@@ -16,7 +16,7 @@ Configure the agent system for your specific tech stack and repository.
 
 1. Collects information about your repository's tech stack
 2. Generates `REPOSITORY-CONTEXT.md` with correct paths, commands, and conventions
-3. Generates `.opencode/instructions-stack.md` with language and framework-specific engineering rules
+3. Generates `.agents/instructions-stack.md` with language and framework-specific engineering rules
 4. Identifies which agent bash permissions need updating for your build tools
 5. Identifies which skill packs are relevant to your stack
 
@@ -86,7 +86,7 @@ Pay special attention to:
 - **Canonical commands**: use the actual commands, not placeholders
 - **Architecture notes**: describe what's actually in the repo, not aspirational state
 
-### 2. .opencode/instructions-stack.md
+### 2. .agents/instructions-stack.md
 
 Generate stack-specific engineering rules. This file supplements the universal
 rules in `instructions.md`.
@@ -174,7 +174,7 @@ modify agent files directly — present them to the user for approval.
 
 Common patterns:
 - Context Mapper: replace `dotnet build*` with stack build command
-- Design Investigator: replace `dotnet build*` with stack build command
+- design-analyst: replace `dotnet build*` with stack build command
 - Reviewer: replace `dotnet build*`, `dotnet test*`, `ng build*`, `ng test*`, `yarn*` with stack equivalents
 - Implementer: already has `"*": allow`, no change needed
 
