@@ -3,6 +3,13 @@
   "instructions": [
     "AGENTS.md"
   ],
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "description": "Official Microsoft Playwright MCP - browser automation for agents (navigate, click, screenshot, fill forms)"
+    }
+  },
   "agent": {
     "build": {
       "model": "github-copilot/claude-sonnet-4.6"
