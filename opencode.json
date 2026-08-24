@@ -90,7 +90,7 @@
     "ui-reviewer": {
       "description": "Reviews UI and UX proposals or implementations for consistency, usability, reuse, maintainability, and alignment with the design system.",
       "mode": "subagent",
-      "model": "github-copilot/gemini-3.1-pro-preview",
+      "model": "github-copilot/gemini-3.7-flash",
       "temperature": 0.1,
       "prompt": "{file:./.agents/roles/development/ui-reviewer.md}",
       "permission": {
@@ -152,7 +152,7 @@
     "reviewer": {
       "description": "Reviews implementation against the task spec, repository rules, and quality expectations. Does not edit code.",
       "mode": "subagent",
-      "model": "github-copilot/gemini-3.1-pro-preview",
+      "model": "github-copilot/gemini-3.7-flash",
       "temperature": 0.1,
       "prompt": "{file:./.agents/roles/development/reviewer.md}",
       "permission": {
@@ -210,7 +210,7 @@
     "pipeline-engineer": {
       "description": "Reviews CI/CD pipeline design, build/release flow, artifact handling, promotion strategy, and rollback readiness.",
       "mode": "subagent",
-      "model": "github-copilot/gpt-5.3",
+      "model": "github-copilot/gpt-5.4",
       "temperature": 0.2,
       "prompt": "{file:./.agents/roles/delivery/pipeline-engineer.md}",
       "permission": {
@@ -246,7 +246,7 @@
     "devsecops-reviewer": {
       "description": "Reviews security posture in the delivery path including secrets, IAM, exposure, and supply chain risks.",
       "mode": "subagent",
-      "model": "github-copilot/gpt-5.3",
+      "model": "github-copilot/gpt-5.4",
       "temperature": 0.1,
       "prompt": "{file:./.agents/roles/delivery/devsecops-reviewer.md}",
       "permission": {
