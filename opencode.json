@@ -3,6 +3,12 @@
   "instructions": [
     "AGENTS.md"
   ],
+  "command": {
+    "wrap-up": {
+      "description": "Close the session: invoke docs-updater to record decisions and lessons from this session into .agents/memory/. Run before restarting or switching context.",
+      "template": "Follow the wrap-up skill at .agents/skills/wrap-up/SKILL.md. Review this session, identify decisions and lessons, then invoke the docs-updater subagent to append entries to .agents/memory/decisions.md and .agents/memory/lessons.md. Confirm what was written and what was skipped."
+    }
+  },
   "mcpServers": {
     "playwright": {
       "command": "npx",
