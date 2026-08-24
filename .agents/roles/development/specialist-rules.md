@@ -214,3 +214,13 @@ Use the `architecture-challenger` when:
 - a patch may have understated cross-module impact
 - the repository already shows pattern sprawl or hidden coupling
 - the team wants an explicit challenge pass before accepting a stronger pattern
+
+Use the `docs-updater` when:
+- a track has completed and memory must be updated before the session ends
+- a decision was made during discussion that should be recorded in `decisions.md`
+- a lesson was learned (failure, unexpected behaviour, pattern to avoid) that belongs in `lessons.md`
+- `REPOSITORY-CONTEXT.md` is stale after a structural change
+- documentation is out of sync with the approved implementation
+
+The docs-updater must always be invoked at session close, even when the work was trivial.
+See the mandatory memory update section in `lifecycle.md`.
