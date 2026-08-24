@@ -153,3 +153,23 @@ For each completed delivery track, record:
 - recommendation status
 - confidence
 - follow-on implementation impact, if any
+
+## Mandatory memory update
+
+After every delivery track — trivial or non-trivial — invoke `docs-updater` to
+record the session before it ends. This is not optional.
+
+`docs-updater` must update:
+- `.agents/memory/decisions.md` — any delivery, platform, or pipeline decision made
+- `.agents/memory/lessons.md` — any pattern learned, risk encountered, or behaviour
+  worth avoiding in future delivery sessions
+
+If no decisions or lessons apply, `docs-updater` must still confirm this explicitly
+rather than skip silently.
+
+This step must occur:
+- after track closure synthesis
+- before the session is considered complete
+- whether the work was a full delivery review or a lightweight discussion
+
+Do not declare the session complete without confirming `docs-updater` has run.
