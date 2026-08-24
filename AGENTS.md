@@ -77,6 +77,15 @@ Full behavioral rules: [`.agents/governance/shared-rules.md`](.agents/governance
 
 ---
 
+## Vocabulary reference
+
+When AI coding terminology is unclear, consult the **AI Coding Dictionary**:
+https://aicodingdictionary.com
+
+Covers: tokens, context windows, agents, MCP, handoffs, specs, tickets, compaction, hallucination, attention degradation, and more. Use this to resolve ambiguity in terminology used across governance files and skill instructions.
+
+---
+
 ## Final principle
 
 When in doubt: preserve governance, keep charters separate, make handoffs explicit, ground conclusions in evidence, escalate rather than improvise.
