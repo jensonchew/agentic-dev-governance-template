@@ -13,7 +13,7 @@ Include where relevant:
 - Confidence
 - Next Step
 
-## Delivery Cell additions
+## Delivery charter additions
 
 Delivery specialists should also include where relevant:
 - Current State
