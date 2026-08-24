@@ -184,3 +184,23 @@ For each delivered track, record:
 - merge status
 - cleanup status
 - docs impact
+
+## Mandatory memory update
+
+After every track — trivial or non-trivial — invoke `docs-updater` to record
+the session before it ends. This is not optional.
+
+`docs-updater` must update:
+- `.agents/memory/decisions.md` — any architectural or implementation decision made
+- `.agents/memory/lessons.md` — any pattern learned, failure encountered, or behaviour
+  worth avoiding in future sessions
+
+If no decisions or lessons apply, `docs-updater` must still confirm this explicitly
+rather than skip silently.
+
+This step must occur:
+- after track closure synthesis
+- before the session is considered complete
+- whether the work was a full orchestrated track or a lightweight discussion
+
+Do not declare the session complete without confirming `docs-updater` has run.

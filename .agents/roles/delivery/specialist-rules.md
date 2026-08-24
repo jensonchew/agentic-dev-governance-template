@@ -151,3 +151,13 @@ Use the `context-mapper` when:
 - repository evidence is needed before specialist review
 - delivery-relevant files or boundaries are unclear
 - the handoff does not identify enough context for bounded evaluation
+
+Use the `docs-updater` when:
+- a delivery track has completed and memory must be updated before the session ends
+- a platform, pipeline, or architecture decision was made that should be recorded in `decisions.md`
+- a lesson was learned (failure, unexpected risk, pattern to avoid) that belongs in `lessons.md`
+- `REPOSITORY-CONTEXT.md` is stale after a delivery-driven structural change
+- delivery documentation is out of sync with the approved direction
+
+The docs-updater must always be invoked at session close, even when the work was trivial.
+See the mandatory memory update section in `lifecycle.md`.
