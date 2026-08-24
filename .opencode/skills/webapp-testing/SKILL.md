@@ -1,12 +1,19 @@
 ---
 name: webapp-testing
-description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
+description: Toolkit for browser automation using Playwright. Supports interacting with local apps AND public websites - navigate, click, fill forms, take screenshots, inspect DOM, and capture console logs.
 license: Complete terms in LICENSE.txt
 ---
 
-# Web Application Testing
+# Web Application Testing & Browser Automation
 
-To test local web applications, write native Python Playwright scripts.
+Use Playwright to automate **any website** - local development servers OR public URLs.
+
+**Capabilities:**
+- Navigate to any URL (localhost, public sites, authenticated pages)
+- Click buttons, fill forms, select dropdowns
+- Take screenshots (full page or element)
+- Extract text, inspect DOM, capture console logs
+- Wait for network idle, selectors, or timeouts
 
 **Helper Scripts Available**:
 - `scripts/with_server.py` - Manages server lifecycle (supports multiple servers)
@@ -94,3 +101,4 @@ with sync_playwright() as p:
   - `element_discovery.py` - Discovering buttons, links, and inputs on a page
   - `static_html_automation.py` - Using file:// URLs for local HTML
   - `console_logging.py` - Capturing console logs during automation
+  - `public_website.py` - Browsing and interacting with public websites
