@@ -88,3 +88,17 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 **Alternatives rejected:** OpenCode session-end hook (not supported by OpenCode); auto-commit memory on every turn (too noisy, not meaningful); memory update only via orchestrator (misses ad-hoc and skill-led sessions).
 **Rationale:** Governance rule covers orchestrator-led sessions automatically. Wrap-up skill covers everything else with a single command. Agnostic layer (`.agents/skills/`) ensures the mechanism works in any IDE, not just OpenCode.
 
+## 2026-08-25 — Non-invasive governance adoption for repos with established agent workflows
+
+**Context:** Attempted full adoption of `agentic-dev-governance-template` into `multi-model-agentic-ai-assistant`. The target repo had `.agents/` intentionally gitignored (Feynman installer boundary), its own governance layer (`docs/agent-policy/`, 37 Cursor skills, Kiro specs, harness system), and was actively developed on Mac Mini M4 with Cursor.
+**Decision:** Minimal/non-invasive adoption only: (1) `opencode.json` with inline prompts referencing existing docs (`AGENTS.md`, `REPOSITORY_CONTEXT.md`, `docs/agent-policy/`, `HARNESS_PROGRESS.md`, `FEATURES.json`) rather than `.agents/` role files; (2) `.opencode/skills/` — stack-relevant skills only, Angular skills excluded; (3) `docs/governance/` — IMDA MGF / AI Verify compliance docs; (4) minimal AGENTS.md additions (OpenCode section + skills table only, no restructure).
+**Alternatives rejected:** Full `.agents/` adoption (`.agents/` gitignored, would create two competing governance systems alongside existing `docs/agent-policy/`); rename `.agents/` to `agent-config/` (non-standard, still duplicates `docs/agent-policy/`); keep `.agents/` local-only (defeats sharing/audit value).
+**Rationale:** The template is designed for greenfield or lightly-governed repos. Repos with mature existing agent workflows should adopt only the additive OpenCode-specific layer (`opencode.json`, `.opencode/skills/`, compliance docs) and leave the existing governance intact. Forcing the template's `.agents/` structure onto a repo with its own equivalent creates fragmentation and maintenance overhead.
+
+## 2026-08-25 — opencode.json inline prompts as an alternative to .agents/ role file pointers
+
+**Context:** `opencode.json` normally points to `.agents/roles/` files via `{file:...}` syntax. In the multi-model repo, `.agents/` is gitignored and the role files don't exist.
+**Decision:** Use inline `prompt:` strings in `opencode.json` that reference the target repo's existing governance docs directly. Prompts reference `REPOSITORY_CONTEXT.md`, `docs/agent-policy/coding-workflow.md`, `HARNESS_PROGRESS.md`, `FEATURES.json`, etc. by name rather than loading role files.
+**Alternatives rejected:** Force-add `.agents/` with git add -f (overrides intentional gitignore decision); use relative file paths to non-existent files (silently ignored by OpenCode, agents get no governance context).
+**Rationale:** Inline prompts degrade gracefully, reference only what exists, and align agents with the repo's own conventions without introducing new file dependencies. Less portable than role files but appropriate when the target repo has its own structured governance docs.
+
