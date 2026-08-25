@@ -35,3 +35,21 @@ Captures what worked, what failed, and what to avoid next time.
 **Lesson:** Always read the actual file before applying a gap analysis fix. Gap analysis tools and agents can reflect stale or inferred state. One file read prevents a wasted edit and a misleading commit.
 **Applies to:** Any session applying findings from a batch gap analysis.
 
+## 2026-08-25 — Check target repo's `.gitignore` before adopting any template directory structure
+
+**What happened:** Attempted full adoption of `agentic-dev-governance-template` into `multi-model-agentic-ai-assistant`. After copying `.agents/`, discovered it was gitignored twice in the target repo with the comment `# Feynman installer (local)`. Running `git add .agents/` failed silently until `git status` showed the ignore.
+**Lesson:** Before adopting a template that introduces new directories, run `git check-ignore -v <directory>` or `grep -r '<directory>' .gitignore` in the target repo first. A gitignored directory is a signal that the repo has a different convention for that space.
+**Applies to:** Any session adopting a governance template into an existing repo.
+
+## 2026-08-25 — ruff format on a large file exposes all pre-existing lint issues, not just changed lines
+
+**What happened:** Ran `ruff format` on `information_retrieval.py` (5800 lines) to fix a formatting complaint on our 1-line change. The formatter reformatted the entire file (115 insertions, 320 deletions), causing the CI lint step to find 228 pre-existing ruff violations in the diff — none from our change. Required an additional commit with `ruff check --fix` + `ruff format` to clear them.
+**Lesson:** When touching a large legacy file that hasn't been ruff-formatted, do not run `ruff format` on it in the same commit as a logic change. Either: (a) run `ruff check --fix && ruff format` as a dedicated cleanup commit first, or (b) restore the original file and apply only the minimal edit without formatting. The CI compares the entire changed file against main, not just the diff.
+**Applies to:** Any session making targeted fixes to large Python files in repos using ruff.
+
+## 2026-08-25 — CI failures can mask each other — fix the first blocker to reveal subsequent ones
+
+**What happened:** `multi-model-agentic-ai-assistant` CI had been failing on a broken doc link since 2026-08-14. Fixing that link (PR #49) revealed a second failure: 3 failing Python tests. Fixing those (PR #50) revealed a fourth failure: 1 more failing test. Each fix exposed the next hidden issue. Total: 4 CI failures that had been silently accumulating.
+**Lesson:** When CI has been failing for weeks, assume there are multiple layered failures. After each fix, expect to find more. Plan for 2-3 rounds of CI iteration, not one. Run the full test suite locally before pushing to avoid the round-trip wait.
+**Applies to:** Any session fixing a long-standing CI failure in a repo you don't run locally.
+
