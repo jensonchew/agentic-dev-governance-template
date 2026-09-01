@@ -145,7 +145,15 @@ Place skill files under `.agents/skills/<skill-name>/SKILL.md`.
 
 ### `.opencode/skills/` (OpenCode UI skills)
 
-Angular component, di, directives, forms, http, routing, signals, ssr, testing, tooling, design-system, frontend-design, setup, theme-factory, web-artifacts-builder, webapp-testing.
+Angular component, di, directives, forms, http, routing, signals, ssr, testing, tooling, design-system, frontend-design, setup, theme-factory, web-artifacts-builder, webapp-testing, mermaid, tldraw.
+
+### `/setup` flow
+
+- Starts with a short stack-family routing question
+- Common families are grouped into frontend-led and enterprise .NET paths
+- `.NET + Angular` remains a deliberate enterprise option
+- `.NET + .NET frontend or no frontend` remains the enterprise fallback for users who want .NET backend without Angular
+- The interview then narrows to the missing stack, architecture, data, testing, and tooling details
 
 ---
 

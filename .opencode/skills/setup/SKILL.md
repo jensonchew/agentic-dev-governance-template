@@ -38,15 +38,59 @@ The user invokes with no arguments or minimal context:
 ```
 In this case, walk through the interview questions below.
 
+Start with one short routing question before the detailed interview:
+
+**What kind of stack are we setting up?**
+
+1. Frontend-led
+   - React + TypeScript
+   - React + Python
+   - React + Go
+   - Angular + TypeScript
+2. Enterprise .NET
+   - .NET + Angular
+   - .NET + .NET frontend or no frontend
+3. Custom / other
+
+Then continue with a short, natural conversation tailored to the chosen family.
+
 ## Interview questions
 
 When information is missing, ask these questions. Group related questions
 to minimize back-and-forth. Do not ask about things the user already stated.
 
 ### Core stack (required)
-1. **Backend**: What language and framework? (e.g., C# + ASP.NET, Go + Chi, Python + FastAPI, Java + Spring Boot, Node + Express, Rust + Actix)
-2. **Frontend**: What framework? (e.g., Angular, React, Vue, Svelte, Next.js, none)
-3. **Repository type**: Monorepo (backend + frontend together), or separate repos?
+1. **Backend**: What language and framework are you using? (e.g., C# + ASP.NET, Go + Chi, Python + FastAPI, Java + Spring Boot, Node + Express, TypeScript + NestJS, Rust + Actix)
+2. **Frontend**: If there is one, what framework are you using? (e.g., Angular, React, Vue, Svelte, Next.js, none)
+3. **Repository type**: Is this a monorepo or separate repos?
+
+### Suggested stack choices
+
+Offer a small number of common choices first, then allow custom input:
+
+- React frontend + TypeScript backend
+- React frontend + Python backend
+- React frontend + Go backend
+- Angular frontend + TypeScript backend
+- TypeScript-only app or service
+- .NET backend + Angular frontend (custom enterprise option)
+- .NET backend + .NET frontend toolchain or no frontend (fallback enterprise option)
+
+If none of the above fit, ask the user to describe their stack in their own words.
+
+### Family-specific follow-ups
+
+- If the user picks a React-based family, ask briefly about routing, state, and styling.
+- If the user picks a TypeScript-only app or service, ask whether it is backend-only, frontend-only, or shared library code.
+- If the user picks a .NET enterprise option, ask whether Angular is required or whether the fallback .NET frontend/no-frontend path is preferred.
+- If the user picks Custom / other, ask only the missing questions needed to define the stack clearly.
+
+### Tone
+
+- Keep the conversation short and practical
+- Ask one grouped question at a time
+- Do not force users through questions they already answered
+- Use examples to guide, not to constrain
 
 ### Architecture (required)
 4. **Backend structure**: How are backend projects/modules organized? (e.g., layered Api/Application/Core/Infrastructure, hexagonal, feature-folders, flat)
@@ -146,6 +190,11 @@ Use these reference patterns for common stacks:
 - preserve strict mode and TypeScript strictness settings
 - follow existing patterns for error handling
 - respect existing module system (ESM vs CJS)
+
+#### TypeScript / JavaScript (frontend)
+- preserve existing frontend framework conventions for TypeScript usage
+- keep framework-specific behavior in the relevant framework section (Angular, React, Vue, etc.)
+- respect existing lint, typecheck, and build commands for the frontend toolchain
 
 #### Angular
 - preserve existing workspace structure and conventions
