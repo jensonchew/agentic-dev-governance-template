@@ -175,7 +175,7 @@ Angular component, di, directives, forms, http, routing, signals, ssr, testing, 
 
 - Naming conventions: kebab-case for all files and directories
 - Branching convention: `opencode/<feature-name>` for agent-created branches
-- PR convention: merge `opencode/glowing-star` → `master` via GitHub PR
+- PR convention: merge feature branches into `master` via GitHub PR; do not use direct pushes for normal changes
 - Documentation expectations: update `REPOSITORY-CONTEXT.md` and `.agents/memory/decisions.md` after any structural or config change
 - Skills convention: agent-invokable skills go in `.agents/skills/`; OpenCode UI skills go in `.opencode/skills/`
 

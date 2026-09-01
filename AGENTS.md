@@ -64,6 +64,17 @@ All agents must not:
 - Claim validation they did not perform
 - Claim production readiness, security posture, or cost posture without evidence
 
+## Change workflow
+
+For any material repository change, PR-first is mandatory:
+- create work on a branch before making changes
+- do not push normal work directly to the default branch
+- open a pull request before merge
+- verify the relevant checks are green before merging
+- treat direct-to-default-branch pushes as exceptions that require explicit approval and a documented reason
+
+This rule is tool-agnostic. It applies whether the work is done in OpenCode, another IDE, an agent framework, MCP tooling, or manually.
+
 Full behavioral rules: [`.agents/governance/shared-rules.md`](.agents/governance/shared-rules.md)
 
 ---

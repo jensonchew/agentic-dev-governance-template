@@ -33,6 +33,12 @@ For any non-trivial task, use the **development orchestrator**:
 
 For lightweight, self-contained tasks, use a skill directly (see below).
 
+### 4. Use a PR-first workflow
+
+For any material change, work on a branch and open a pull request before merge.
+Do not rely on direct pushes to the default branch as the normal path.
+Always confirm the relevant checks are green before merging.
+
 ---
 
 ## Two workflows: orchestrator vs. skills
@@ -85,6 +91,8 @@ Use when:
 
 Skills are lighter and faster. The orchestrator enforces more discipline.
 **When in doubt on a non-trivial change, use the orchestrator.**
+
+When the change is material, use a PR even if the work originated from a skill or direct agent session.
 
 ---
 
