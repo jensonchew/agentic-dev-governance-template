@@ -102,3 +102,24 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 **Alternatives rejected:** Force-add `.agents/` with git add -f (overrides intentional gitignore decision); use relative file paths to non-existent files (silently ignored by OpenCode, agents get no governance context).
 **Rationale:** Inline prompts degrade gracefully, reference only what exists, and align agents with the repo's own conventions without introducing new file dependencies. Less portable than role files but appropriate when the target repo has its own structured governance docs.
 
+## 2026-09-01 — Use the freshly cloned repo in Temp after the Downloads worktree proved invalid
+
+**Context:** The Downloads-based workspace at `C:\Users\jensonc\Downloads\opencode-dotnet-angular-template-main\opencode-dotnet-angular-template-main` only contained `.git/` and `.obsidian/`, and git commands failed there. A fresh clone of `jensonchew/agentic-dev-governance-template` was created under `C:\Users\jensonc\AppData\Local\Temp\opencode\agentic-dev-governance-template` and verified against GitHub.
+**Decision:** Use the Temp clone as the canonical workspace for ongoing work in this session.
+**Alternatives rejected:** Repairing the Downloads worktree in place (broken git metadata); continuing to work in the invalid checkout (no repository files); assuming the old path was authoritative (would keep context attached to the wrong folder).
+**Rationale:** The fresh clone is a valid git checkout, matches the private GitHub repo, and contains the expected governance template files and OpenCode wiring.
+
+## 2026-09-01 — Add portable Tldraw and Mermaid skills under .opencode/skills
+
+**Context:** The template already had reusable OpenCode skills for webapp testing and Angular tooling, but no high-level portable skills for visual whiteboarding or text-first diagrams.
+**Decision:** Add two repo-agnostic OpenCode skills: `tldraw` for collaborative visual exploration and `mermaid` for markdown-friendly diagrams.
+**Alternatives rejected:** Embed the guidance into repo-specific docs only (less reusable); hard-code stack-specific examples into the skills (reduces portability across repos); leave them uncreated (misses a common cross-repo workflow need).
+**Rationale:** Both skills are useful across repos and fit the existing `.opencode/skills/` pattern without introducing stack assumptions.
+
+## 2026-09-01 — Upgrade GitHub CLI through Chocolatey after winget was unavailable
+
+**Context:** `winget` was not installed on the machine, and the existing `gh` version was outdated at `2.20.2`.
+**Decision:** Use Chocolatey to upgrade GitHub CLI instead of `winget`.
+**Alternatives rejected:** Rely on `winget upgrade` (not available); keep the old `gh` version (blocked access to newer CLI behavior); manually install without package manager assistance (unnecessary when Chocolatey was available).
+**Rationale:** Chocolatey was present and successfully upgraded `gh` to `2.98.0` from an elevated shell.
+

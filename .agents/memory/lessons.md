@@ -53,3 +53,21 @@ Captures what worked, what failed, and what to avoid next time.
 **Lesson:** When CI has been failing for weeks, assume there are multiple layered failures. After each fix, expect to find more. Plan for 2-3 rounds of CI iteration, not one. Run the full test suite locally before pushing to avoid the round-trip wait.
 **Applies to:** Any session fixing a long-standing CI failure in a repo you don't run locally.
 
+## 2026-09-01 — A folder can look like a repo but still be unusable if the git metadata is detached
+
+**What happened:** The Downloads workspace looked like the intended repo path, but git commands failed and the folder only contained `.git/` and `.obsidian/`. A fresh clone was required to recover a valid checkout.
+**Lesson:** When a workspace feels suspiciously empty, verify both the visible files and the git remote before continuing. If the checkout is invalid, clone a fresh copy rather than trying to reason from the broken path.
+**Applies to:** Any Windows OpenCode session where the current folder may be a broken worktree or partial extraction.
+
+## 2026-09-01 — Use repo-agnostic skills for reusable workflows like diagrams and whiteboards
+
+**What happened:** We added portable OpenCode skills for Tldraw and Mermaid rather than embedding those workflows in repo-specific docs.
+**Lesson:** Cross-repo workflows should live in reusable skills when possible, with only minimal repo-specific adaptation at the destination. Keep the skill generic, and let the target repo decide how the artifact is stored or rendered.
+**Applies to:** Any template or toolchain meant to travel across multiple repositories.
+
+## 2026-09-01 — If winget is unavailable, use the package manager that is actually installed
+
+**What happened:** `winget` was missing on this machine, but Chocolatey was installed and managed the GitHub CLI package.
+**Lesson:** Don't assume the default Windows package manager exists or is the right path. Check what is installed first, then use the package manager that actually controls the tool.
+**Applies to:** Any Windows tool upgrade, especially CLI utilities like `gh`.
+
