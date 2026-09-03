@@ -1,10 +1,31 @@
 # OpenCode Agentic Development Template
 
-This repository is a starter template for teams using OpenCode with an
-orchestrator-led development and delivery flow.
+**Project page:** [jensonchew.github.io/projects/agentic-dev-governance](https://jensonchew.github.io/projects/agentic-dev-governance/)
 
-It is **stack-agnostic** — run `/setup` to configure it for your specific
-tech stack (e.g., .NET + Angular, Python + React, Go + Vue, Java + Svelte).
+## What this is
+
+A **stack-agnostic** starter template for building software with OpenCode (or similar IDEs) using an orchestrator-led **development and delivery** workflow. Agents follow phased governance—context mapping, spec-before-implement, isolated implementation, and independent review—instead of improvising in a single thread.
+
+## Who it's for
+
+- Solo developers or teams adopting **Cursor, OpenCode, or Zed** with multi-agent workflows
+- Repos that want **role separation** (orchestrator vs implementer vs reviewer) without inventing governance from scratch
+- Anyone who needs a portable harness they can fork and run `/setup` against their own stack
+
+## What this is NOT
+
+- **Not a personal AI assistant** — no Telegram gateway, messaging, or runtime product code
+- **Not runtime governance** — no session audit, circuit breakers, or production ingest gates (that is a separate concern in a deployed assistant)
+- **Not compliance-certified** — this is an engineering workflow template, not a certified security or PDPA product
+
+## Quick start
+
+1. Click **Use this template** on GitHub (or clone this repo).
+2. Open in OpenCode and run `/setup` with your stack, e.g. `Go backend with Chi, React frontend with Vite`.
+3. Review generated `REPOSITORY-CONTEXT.md` and `.agents/instructions-stack.md`.
+4. Use the **development orchestrator** for non-trivial work; it coordinates context → spec → implement → review.
+
+It is **stack-agnostic** — run `/setup` to configure it for your specific tech stack (e.g., .NET + Angular, Python + React, Go + Vue, Java + Svelte).
 
 ## What this template provides
 
@@ -18,38 +39,25 @@ tech stack (e.g., .NET + Angular, Python + React, Go + Vue, Java + Svelte).
 - Reusable skills in `.agents/skills/`
 - Just-in-time context loading — agents load only what their current task requires
 
-## Quick start
+## Setup details
 
-### 1. Run `/setup`
+### Run `/setup`
 
-The setup command walks you through configuring the agent system for your
-stack. You can provide a description directly:
+The setup command walks you through configuring the agent system for your stack:
 
 ```
 /setup Go backend with Chi, React frontend with Vite, PostgreSQL with sqlc
 ```
 
-Or run `/setup` interactively to be walked through the configuration.
+Or run `/setup` interactively. This generates:
 
-This generates:
 - Completed `REPOSITORY-CONTEXT.md` with your paths, commands, and conventions
 - `.agents/instructions-stack.md` with language and framework-specific rules
 - Agent bash permission recommendations for your build tools
 
-### 2. Review generated files
+### Review and start
 
-Check that `REPOSITORY-CONTEXT.md` and `instructions-stack.md` match your
-actual repository. Approve any agent permission updates.
-
-### 3. Start working
-
-Use the development orchestrator for non-trivial work. It will:
-- gather context before implementation
-- analyze design options before pattern-sensitive changes
-- plan migration sequences for schema/contract changes
-- write specs for non-trivial execution
-- coordinate implementation and review
-- hand off to delivery when runtime concerns begin
+Check that `REPOSITORY-CONTEXT.md` and `instructions-stack.md` match your repository. The development orchestrator will gather context, write specs for non-trivial work, coordinate implementation and review, and hand off to delivery when runtime concerns begin.
 
 ## Structure
 

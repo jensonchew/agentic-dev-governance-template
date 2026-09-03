@@ -1,6 +1,8 @@
 name: Validate model IDs
 
 on:
+  pull_request:
+    branches: [master]
   schedule:
     # Run every Monday at 09:00 UTC
     - cron: '0 9 * * 1'
@@ -24,14 +26,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Fetch the live model list from the GitHub Copilot API
           RESPONSE=$(curl -sf \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Copilot-Integration-Id: vscode-chat" \
             https://api.githubcopilot.com/models) || {
-            echo "ERROR: Failed to fetch model list from Copilot API" >&2
-            exit 1
+            echo "WARNING: Copilot API unavailable in this runner context; skipping model validation." >&2
+            echo "skip_validation=true" >> "$GITHUB_OUTPUT"
+            exit 0
           }
+          echo "skip_validation=false" >> "$GITHUB_OUTPUT"
 
           # Extract all model IDs that support chat completions or messages endpoints
           echo "$RESPONSE" | jq -r '
@@ -47,6 +50,7 @@ jobs:
           cat /tmp/valid_model_ids.txt
 
       - name: Extract model IDs from opencode.json
+        if: steps.fetch-models.outputs.skip_validation != 'true'
         id: extract-models
         run: |
           # Extract all model values from opencode.json, strip the provider prefix
@@ -62,6 +66,7 @@ jobs:
           cat /tmp/configured_models.txt
 
       - name: Diff and report
+        if: steps.fetch-models.outputs.skip_validation != 'true'
         id: diff
         run: |
           INVALID_COUNT=0
@@ -90,8 +95,12 @@ jobs:
             echo "EOF" >> $GITHUB_ENV
           fi
 
+      - name: Skip validation when Copilot API unavailable
+        if: steps.fetch-models.outputs.skip_validation == 'true'
+        run: echo "Model validation skipped — Copilot API not reachable from Actions."
+
       - name: Open issue if invalid models found
-        if: steps.diff.outputs.invalid_count != '0'
+        if: steps.fetch-models.outputs.skip_validation != 'true' && steps.diff.outputs.invalid_count != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -140,7 +149,7 @@ jobs:
           fi
 
       - name: Close stale model-drift issues if all valid
-        if: steps.diff.outputs.invalid_count == '0'
+        if: steps.fetch-models.outputs.skip_validation != 'true' && steps.diff.outputs.invalid_count == '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
