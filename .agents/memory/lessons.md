@@ -7,8 +7,8 @@ Captures what worked, what failed, and what to avoid next time.
 
 ## 2026-08-24 — OpenCode worktree `.git` file can lose its reference
 
-**What happened:** The OpenCode worktree at `.../glowing-star` has a `.git` file pointing to `Downloads/.../worktrees/glowing-star`, but the parent repo's `.git` dir only contains `objects` — the worktree metadata path does not exist. All `git` commands in the worktree directory fail with `fatal: not a git repository: (NULL)`.
-**Lesson:** When the git worktree reference breaks, clone from remote to a temp directory (`C:\Users\jensonc\AppData\Local\Temp\opencode\<name>`) and work from there. Do not attempt to repair the worktree in-place.
+**What happened:** The OpenCode worktree at `.../worktrees/<branch>` has a `.git` file pointing to a missing worktree metadata path. All `git` commands in the worktree directory fail with `fatal: not a git repository: (NULL)`.
+**Lesson:** When the git worktree reference breaks, clone from remote to a temp directory (e.g. `C:\Users\<you>\AppData\Local\Temp\opencode\<name>` on Windows) and work from there. Do not attempt to repair the worktree in-place.
 **Applies to:** Any session working in an OpenCode-managed worktree on Windows.
 
 ## 2026-08-24 — Setting `$env:GIT_DIR` in a bash tool call pollutes subsequent calls
@@ -55,7 +55,7 @@ Captures what worked, what failed, and what to avoid next time.
 
 ## 2026-09-01 — A folder can look like a repo but still be unusable if the git metadata is detached
 
-**What happened:** The Downloads workspace looked like the intended repo path, but git commands failed and the folder only contained `.git/` and `.obsidian/`. A fresh clone was required to recover a valid checkout.
+**What happened:** A workspace path looked like the intended repo, but git commands failed and the folder only contained `.git/` and editor metadata. A fresh clone was required to recover a valid checkout.
 **Lesson:** When a workspace feels suspiciously empty, verify both the visible files and the git remote before continuing. If the checkout is invalid, clone a fresh copy rather than trying to reason from the broken path.
 **Applies to:** Any Windows OpenCode session where the current folder may be a broken worktree or partial extraction.
 

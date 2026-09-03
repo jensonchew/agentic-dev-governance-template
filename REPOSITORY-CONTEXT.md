@@ -27,7 +27,6 @@ Do not use this file for:
 - Purpose: Stack-agnostic agentic development governance template. Provides multi-charter agent governance (Development + Delivery), role definitions, permission matrices, lifecycle gates, escalation rules, and reusable skills for structured AI-assisted software delivery.
 - Business domain: Developer tooling / AI agent governance
 - Default branch: `master`
-- Active working branch: `opencode/glowing-star`
 - Repository type: Governance template (no application code — markdown, JSON config, skill files only)
 - Frontend package manager: N/A
 
@@ -160,14 +159,14 @@ Angular component, di, directives, forms, http, routing, signals, ssr, testing, 
 ## Local development constraints
 
 - No build toolchain required — this is a docs/config-only repository
-- Git worktree note: the active worktree's `.git` file points to the Downloads folder which has a partial `.git` dir. Work via the cloned copy at `C:\Users\jensonc\AppData\Local\Temp\opencode\gov-template` or re-clone from remote.
+- If an OpenCode worktree `.git` reference is broken, clone fresh from remote to a temp directory rather than repairing in place
 - Agents should never commit: secrets, generated files, or personal credentials
 
 ---
 
 ## Known baseline issues
 
-- Git worktree reference is broken in the local worktree at `C:\Users\jensonc\.local\share\opencode\worktree\...\glowing-star`. The `.git` file points to a `worktrees/glowing-star` path that no longer exists in the Downloads folder. Use the temp clone at `C:\Users\jensonc\AppData\Local\Temp\opencode\gov-template` for all git operations until the worktree is re-registered or re-cloned.
+- None at template level. Operator-specific worktree or machine paths belong in local notes, not in committed template docs.
 
 ---
 
@@ -175,7 +174,7 @@ Angular component, di, directives, forms, http, routing, signals, ssr, testing, 
 
 - Naming conventions: kebab-case for all files and directories
 - Branching convention: `opencode/<feature-name>` for agent-created branches
-- PR convention: merge `opencode/glowing-star` → `master` via GitHub PR
+- PR convention: merge feature branches → `master` via GitHub PR
 - Documentation expectations: update `REPOSITORY-CONTEXT.md` and `.agents/memory/decisions.md` after any structural or config change
 - Skills convention: agent-invokable skills go in `.agents/skills/`; OpenCode UI skills go in `.opencode/skills/`
 

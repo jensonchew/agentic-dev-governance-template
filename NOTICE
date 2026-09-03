@@ -1,0 +1,18 @@
+agentic-dev-governance-template
+================================
+
+This repository is licensed under the MIT License (see LICENSE).
+
+Third-party components
+----------------------
+
+The following directories under `.opencode/skills/` include their own
+LICENSE.txt files and are subject to those terms in addition to this notice:
+
+- `.opencode/skills/frontend-design/` — see LICENSE.txt in that directory
+- `.opencode/skills/theme-factory/` — see LICENSE.txt in that directory
+- `.opencode/skills/web-artifacts-builder/` — see LICENSE.txt in that directory
+- `.opencode/skills/webapp-testing/` — Apache License 2.0 (see LICENSE.txt)
+
+Other skill directories may bundle upstream content; check each subdirectory
+for license files before redistribution.
