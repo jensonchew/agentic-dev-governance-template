@@ -104,7 +104,7 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 
 ## 2026-09-01 — Use the freshly cloned repo in Temp after the Downloads worktree proved invalid
 
-**Context:** The Downloads-based workspace at `C:\Users\jensonc\Downloads\opencode-dotnet-angular-template-main\opencode-dotnet-angular-template-main` only contained `.git/` and `.obsidian/`, and git commands failed there. A fresh clone of `jensonchew/agentic-dev-governance-template` was created under `C:\Users\jensonc\AppData\Local\Temp\opencode\agentic-dev-governance-template` and verified against GitHub.
+**Context:** A local workspace path only contained `.git/` and metadata folders, and git commands failed there. A fresh clone of `jensonchew/agentic-dev-governance-template` was created under a temp directory (e.g. `C:\Users\<you>\AppData\Local\Temp\opencode\<repo-name>`) and verified against GitHub.
 **Decision:** Use the Temp clone as the canonical workspace for ongoing work in this session.
 **Alternatives rejected:** Repairing the Downloads worktree in place (broken git metadata); continuing to work in the invalid checkout (no repository files); assuming the old path was authoritative (would keep context attached to the wrong folder).
 **Rationale:** The fresh clone is a valid git checkout, matches the private GitHub repo, and contains the expected governance template files and OpenCode wiring.
