@@ -107,9 +107,9 @@ This repository has no build, test, or lint pipeline — it is markdown and JSON
 
 ### Git workflow
 
-- Active branch: `opencode/glowing-star`
+- Default branch: `master`
 - Remote: `https://github.com/jensonchew/agentic-dev-governance-template.git`
-- Push: `git push` (upstream set to `origin/opencode/glowing-star`)
+- Push: `git push -u origin <branch>`
 - Open PR: `gh pr create --base master`
 
 ### Skills installation

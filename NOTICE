@@ -1,5 +1,5 @@
 agentic-dev-governance-template
-================================
+Copyright (c) 2026 Jenson Chew
 
 This repository is licensed under the MIT License (see LICENSE).
 
@@ -14,5 +14,6 @@ LICENSE.txt files and are subject to those terms in addition to this notice:
 - `.opencode/skills/web-artifacts-builder/` — see LICENSE.txt in that directory
 - `.opencode/skills/webapp-testing/` — Apache License 2.0 (see LICENSE.txt)
 
-Other skill directories may bundle upstream content; check each subdirectory
-for license files before redistribution.
+Other skills under `.opencode/skills/` and `.agents/skills/` may originate
+from upstream sources (e.g. mattpocock/skills). Check each skill directory
+for attribution and license terms before redistribution.

@@ -7,8 +7,8 @@ Captures what worked, what failed, and what to avoid next time.
 
 ## 2026-08-24 — OpenCode worktree `.git` file can lose its reference
 
-**What happened:** The OpenCode worktree at `.../worktrees/<branch>` has a `.git` file pointing to a missing worktree metadata path. All `git` commands in the worktree directory fail with `fatal: not a git repository: (NULL)`.
-**Lesson:** When the git worktree reference breaks, clone from remote to a temp directory (e.g. `C:\Users\<you>\AppData\Local\Temp\opencode\<name>` on Windows) and work from there. Do not attempt to repair the worktree in-place.
+**What happened:** An OpenCode worktree had a `.git` file pointing to a stale `worktrees/<branch-name>` path under the parent repo, but the worktree metadata no longer existed. All `git` commands in the worktree directory failed with `fatal: not a git repository: (NULL)`.
+**Lesson:** When the git worktree reference breaks, clone from remote to a temp directory (e.g. `C:\Users\<you>\AppData\Local\Temp\opencode\<name>` on Windows, or `/tmp/<repo-name>` on Unix) and work from there. Do not attempt to repair the worktree in-place.
 **Applies to:** Any session working in an OpenCode-managed worktree on Windows.
 
 ## 2026-08-24 — Setting `$env:GIT_DIR` in a bash tool call pollutes subsequent calls
