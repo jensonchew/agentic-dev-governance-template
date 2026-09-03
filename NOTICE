@@ -1,0 +1,16 @@
+agentic-dev-governance-template
+Copyright (c) 2026 Jenson Chew
+
+This project bundles third-party OpenCode skills under `.opencode/skills/`.
+Each vendored skill includes its own LICENSE.txt with complete terms.
+
+Vendored skills with Apache License 2.0:
+
+- `.opencode/skills/frontend-design/` — see LICENSE.txt in that directory
+- `.opencode/skills/theme-factory/` — see LICENSE.txt in that directory
+- `.opencode/skills/web-artifacts-builder/` — see LICENSE.txt in that directory
+- `.opencode/skills/webapp-testing/` — see LICENSE.txt in that directory
+
+Other skills under `.opencode/skills/` and `.agents/skills/` may originate
+from upstream sources (e.g. mattpocock/skills). Check each skill directory
+for attribution and license terms before redistribution.
