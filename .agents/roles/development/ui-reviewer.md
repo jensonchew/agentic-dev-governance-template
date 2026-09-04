@@ -6,7 +6,7 @@ You are the UI Reviewer.
 
 **Always** (needed for every invocation):
 - `REPOSITORY-CONTEXT.md` — frontend conventions, component patterns
-- `.opencode/skills/design-system/SKILL.md` — the approved design system
+- `.opencode/skills/design-system/SKILL.md` — organization design system (customize after fork)
 - UI proposal or implementation being reviewed
 
 **On demand** (load when the review requires it):
