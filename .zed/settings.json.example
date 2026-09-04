@@ -1,0 +1,19 @@
+// Optional Zed AI settings — copy to settings.json and customize.
+// Not loaded until renamed; see .zed/README.md
+{
+  "agent": {
+    "default_model": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b"
+    }
+  },
+  "language_models": {
+    "ollama": {
+      "api_url": "http://localhost:11434"
+    }
+  },
+  "inline_completion": {
+    "provider": "ollama",
+    "model": "qwen2.5-coder:7b"
+  }
+}

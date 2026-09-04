@@ -43,9 +43,10 @@ Governance in this template is **IDE-agnostic**. Role definitions, charters, ski
 ## Zed
 
 1. Zed auto-loads root [`AGENTS.md`](../../AGENTS.md) as project Agent rules.
-2. Use **separate threads** for explore/design vs implement — same phase discipline as OpenCode orchestration.
-3. Map OpenCode orchestrator phases to Copilot Agent first messages (e.g. "Context map only — read-only, no edits").
-4. Optional: personal rules in `~/.config/zed/AGENTS.md` for operator preferences; keep repo governance in this template.
+2. **Quickstart:** [docs/examples/zed-quickstart.md](../examples/zed-quickstart.md) — thread templates, phased workflow, skill paths.
+3. Optional local Ollama: [`.zed/README.md`](../../.zed/README.md) + `settings.json.example`.
+4. Use **separate threads** for explore/design vs implement — same phase discipline as OpenCode orchestration.
+5. Optional personal rules in `~/.config/zed/AGENTS.md` — see [zed-personal-AGENTS.md](../examples/zed-personal-AGENTS.md).
 
 ---
 
@@ -74,4 +75,5 @@ You can switch IDEs without rewriting governance — only the adapter layer chan
 
 - [`AGENTS.md`](../../AGENTS.md) — root governance
 - [`README.md`](../../README.md) — quick start
+- [Zed quickstart](examples/zed-quickstart.md) — thread templates for Zed + Copilot Agent
 - [ADR 0002: agent-agnostic governance split](adr/0002-agent-agnostic-governance-split.md)
