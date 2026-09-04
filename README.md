@@ -1,31 +1,57 @@
-# OpenCode Agentic Development Template
+# Agentic Development Governance Template
 
-**Project page:** [jensonchew.github.io/projects/agentic-dev-governance](https://jensonchew.github.io/projects/agentic-dev-governance/)
+**IDE-agnostic governance** for multi-agent development and delivery. Works with **OpenCode**, **Cursor**, **Zed**, and **VS Code** — OpenCode ships the richest runtime wiring; other IDEs load the same `.agents/` role packs and `AGENTS.md`.
+
+**Project page:** [jensonchew.github.io/projects/agentic-dev-governance](https://jensonchew.github.io/projects/agentic-dev-governance/) · **IDE setup:** [docs/IDE_ADAPTERS.md](docs/IDE_ADAPTERS.md)
 
 ## What this is
 
-A **stack-agnostic** starter template for building software with OpenCode (or similar IDEs) using an orchestrator-led **development and delivery** workflow. Agents follow phased governance—context mapping, spec-before-implement, isolated implementation, and independent review—instead of improvising in a single thread.
+A **stack-agnostic** starter template for building software with AI coding agents using an orchestrator-led **development and delivery** workflow. Agents follow phased governance—context mapping, spec-before-implement, isolated implementation, and independent review—instead of improvising in a single thread.
 
 ## Who it's for
 
-- Solo developers or teams adopting **Cursor, OpenCode, or Zed** with multi-agent workflows
+- Solo developers or teams using **Cursor, OpenCode, Zed, or VS Code** with multi-agent workflows
 - Repos that want **role separation** (orchestrator vs implementer vs reviewer) without inventing governance from scratch
-- Anyone who needs a portable harness they can fork and run `/setup` against their own stack
+- Anyone who needs a portable harness they can fork and configure for their stack
 
 ## What this is NOT
 
 - **Not a personal AI assistant** — no Telegram gateway, messaging, or runtime product code
 - **Not runtime governance** — no session audit, circuit breakers, or production ingest gates (that is a separate concern in a deployed assistant)
+- **Not OpenCode-only** — `opencode.json` is optional convenience; governance lives in portable markdown under `.agents/`
 - **Not compliance-certified** — this is an engineering workflow template, not a certified security or PDPA product
 
 ## Quick start
 
-1. Click **Use this template** on GitHub (or clone this repo).
-2. Open in OpenCode and run `/setup` with your stack, e.g. `Go backend with Chi, React frontend with Vite`.
-3. Review generated `REPOSITORY-CONTEXT.md` and `.agents/instructions-stack.md`.
-4. Use the **development orchestrator** for non-trivial work; it coordinates context → spec → implement → review.
+### Any IDE
 
-It is **stack-agnostic** — run `/setup` to configure it for your specific tech stack (e.g., .NET + Angular, Python + React, Go + Vue, Java + Svelte).
+1. Click **Use this template** on GitHub (or clone this repo).
+2. Read [`AGENTS.md`](AGENTS.md) and [`docs/IDE_ADAPTERS.md`](docs/IDE_ADAPTERS.md) for your editor.
+3. Customize `REPOSITORY-CONTEXT.md` for your repo (or run `/setup` in OpenCode to generate it).
+4. Use phased workflows from `.agents/roles/` — context → spec → implement → review.
+
+### OpenCode (recommended for orchestration)
+
+1. Open in OpenCode and run `/setup` with your stack, e.g. `Go backend with Chi, React frontend with Vite`.
+2. Review generated `REPOSITORY-CONTEXT.md` and `.agents/instructions-stack.md`.
+3. Use the **development orchestrator** for non-trivial work.
+
+### Cursor / Zed / VS Code
+
+Load `AGENTS.md`, point rules at `.agents/` charters, and follow role files manually or via harness skills. See [docs/IDE_ADAPTERS.md](docs/IDE_ADAPTERS.md).
+
+## IDE support
+
+| IDE | How to use this template |
+|-----|--------------------------|
+| **OpenCode** | `opencode.json` + `/setup` — full orchestrator wiring |
+| **Cursor** | `AGENTS.md` + `.cursor/rules/` pointers + optional `.agents/skills/` |
+| **Zed** | `AGENTS.md` auto-loaded; separate threads per phase |
+| **VS Code** | Workspace instructions → `AGENTS.md` + role files |
+
+Details: [docs/IDE_ADAPTERS.md](docs/IDE_ADAPTERS.md)
+
+It is **stack-agnostic** — run `/setup` in OpenCode (or fill `REPOSITORY-CONTEXT.md` manually) for your tech stack (e.g., .NET + Angular, Python + React, Go + Vue, Java + Svelte).
 
 ## What this template provides
 
