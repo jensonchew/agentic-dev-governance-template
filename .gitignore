@@ -5,6 +5,7 @@ Thumbs.db
 *.swo
 .idea/
 .vscode/
+.zed/settings.json
 
 # Logs
 *.log
