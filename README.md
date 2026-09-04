@@ -46,7 +46,7 @@ Load `AGENTS.md`, point rules at `.agents/` charters, and follow role files manu
 |-----|--------------------------|
 | **OpenCode** | `opencode.json` + `/setup` — full orchestrator wiring |
 | **Cursor** | `AGENTS.md` + `.cursor/rules/` pointers + optional `.agents/skills/` |
-| **Zed** | `AGENTS.md` auto-loaded; separate threads per phase |
+| **Zed** | `AGENTS.md` auto-loaded; [zed quickstart](docs/examples/zed-quickstart.md) |
 | **VS Code** | Workspace instructions → `AGENTS.md` + role files |
 
 Details: [docs/IDE_ADAPTERS.md](docs/IDE_ADAPTERS.md)
