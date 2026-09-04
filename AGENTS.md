@@ -1,7 +1,8 @@
 # AGENTS.md
 
 Stack-agnostic agentic development template with structured governance.
-Run `/setup` to configure for your tech stack.
+Works with **OpenCode, Cursor, Zed, and VS Code** — see [docs/IDE_ADAPTERS.md](docs/IDE_ADAPTERS.md).
+Run `/setup` in OpenCode to configure for your tech stack.
 
 ---
 
