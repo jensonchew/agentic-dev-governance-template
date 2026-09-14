@@ -23,6 +23,12 @@ Or run `/setup` interactively. This generates:
 
 These are the two files most agents load on every invocation. Keep them accurate as your stack evolves.
 
+### 2b. Use the governance update checklist
+
+When updating governance or policy-linked docs, start from
+`docs/templates/GOVERNANCE_UPDATE_CHECKLIST.md` to keep the scope focused and the
+wording consistent.
+
 ### 3. Start working
 
 For any non-trivial task, use the **development orchestrator**:
