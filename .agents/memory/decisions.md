@@ -123,3 +123,10 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 **Alternatives rejected:** Rely on `winget upgrade` (not available); keep the old `gh` version (blocked access to newer CLI behavior); manually install without package manager assistance (unnecessary when Chocolatey was available).
 **Rationale:** Chocolatey was present and successfully upgraded `gh` to `2.98.0` from an elevated shell.
 
+## 2026-09-14 — Update governance docs for IMDA's May 2026 Agentic AI revisions
+
+**Context:** The printed IMDA materials showed a May 2026 update to the Model AI Governance Framework for Agentic AI, adding real-world case studies and new best practices for multi-agent systems, third-party agents, and automation bias.
+**Decision:** Update the repo's governance docs and repository context to reflect the revised IMDA guidance.
+**Alternatives rejected:** Leaving the docs at the January 2026 framing (would miss the updated guidance); summarising the update only in conversation (would not persist for future sessions); overfitting the docs to specific vendor examples (would reduce portability).
+**Rationale:** The May update materially strengthens the governance template's agentic AI guidance and should be reflected in the living repo docs.
+

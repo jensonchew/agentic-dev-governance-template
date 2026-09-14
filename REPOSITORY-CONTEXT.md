@@ -43,6 +43,7 @@ This is a governance template — there is no application code. Structure is doc
 - Agent role files: `.agents/roles/development/`, `.agents/roles/delivery/`, `.agents/roles/shared/`
 - Engineering instructions: `.agents/instructions.md`, `.agents/instructions/`
 - Governance rules: `.agents/governance/`
+- Governance docs align with IMDA's Model AI Governance Framework for Agentic AI (Jan 2026, updated May 2026) and AI Verify.
 - Reusable skills: `.agents/skills/`
 - OpenCode skills (UI/frontend): `.opencode/skills/`
 - Institutional memory: `.agents/memory/decisions.md`, `.agents/memory/lessons.md`
