@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  validate-repo:
+    name: Validate docs and repo structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check diff hygiene
+        run: git diff --check origin/master...HEAD
+
+      - name: Verify required repository files exist
+        run: |
+          test -f AGENTS.md
+          test -f REPOSITORY-CONTEXT.md
+          test -f CONTRIBUTING.md
+          test -f opencode.json
+          test -f .agents/instructions.md
