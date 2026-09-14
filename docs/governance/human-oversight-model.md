@@ -6,6 +6,10 @@ This document defines which agent actions require human review or approval befor
 execution, and which may proceed autonomously. It is the risk-tiered basis for the
 permission settings in `opencode.json`.
 
+The May 2026 IMDA update reinforces that human oversight must remain meaningful when
+agents operate in multi-agent workflows, use third-party tools, or risk triggering
+automation bias.
+
 ---
 
 ## Tiering model

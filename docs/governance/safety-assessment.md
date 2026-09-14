@@ -6,6 +6,10 @@ This document records the risk assessment that justifies the current permission
 settings and governance controls in this agentic development system. It is a living
 document — update it when the permission matrix or agent roster changes.
 
+The May 2026 IMDA update adds real-world case studies and best practices for
+multi-agent systems, third-party agents, and automation bias. Use those updates as
+evidence for the controls below.
+
 ---
 
 ## Scope

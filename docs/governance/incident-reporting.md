@@ -5,6 +5,10 @@ Aligned with: IMDA MGF for Agentic AI — Incident Reporting dimension; AI Verif
 This document defines what constitutes an AI incident in the context of this
 agentic development system, how to report it, and how to learn from it.
 
+The May 2026 IMDA update is relevant here because failures in multi-agent flows,
+third-party tools, or human review can matter even when no external harm has yet
+occurred.
+
 ---
 
 ## What is an AI incident?

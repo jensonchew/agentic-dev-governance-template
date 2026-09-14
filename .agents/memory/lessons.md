@@ -71,3 +71,9 @@ Captures what worked, what failed, and what to avoid next time.
 **Lesson:** Don't assume the default Windows package manager exists or is the right path. Check what is installed first, then use the package manager that actually controls the tool.
 **Applies to:** Any Windows tool upgrade, especially CLI utilities like `gh`.
 
+## 2026-09-14 — IMDA updates should be captured as governance deltas, not just citations
+
+**What happened:** The May 2026 IMDA Agentic AI update added practical case studies and best practices around multi-agent systems, third-party agents, and automation bias.
+**Lesson:** When external governance sources change in a way that affects operational controls, reflect the delta directly in the repo's risk, oversight, and incident documents rather than only linking the source.
+**Applies to:** Any governance template that tracks AI governance frameworks or regulatory guidance over time.
+
