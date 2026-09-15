@@ -112,6 +112,7 @@ This repository has no build, test, or lint pipeline — it is markdown and JSON
 - Remote: `https://github.com/jensonchew/agentic-dev-governance-template.git`
 - Push: `git push -u origin <branch>`
 - Open PR: `gh pr create --base master`
+- Automated checks run on pull requests and default-branch updates; wait for them to pass before merge
 
 ### Skills installation
 
