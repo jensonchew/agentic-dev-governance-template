@@ -43,6 +43,12 @@ Use Tldraw when a task benefits from drawing ideas out before committing to a te
 - Keep annotations short
 - Treat the drawing as an intermediate design artifact unless the user explicitly wants it as the final deliverable
 
+## Example uses
+
+- Sketch a service boundary map before writing a spec
+- Map a user flow that spans several pages or agents
+- Lay out a workshop decision tree before converting it to Mermaid
+
 ## Cross-repo use
 
 - Keep this skill repo-agnostic

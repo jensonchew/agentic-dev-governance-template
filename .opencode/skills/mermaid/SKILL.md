@@ -54,6 +54,26 @@ flowchart TD
   C -- No --> E[Implement directly]
 ```
 
+```mermaid
+sequenceDiagram
+  participant User
+  participant Orchestrator
+  participant Reviewer
+  User->>Orchestrator: Request change
+  Orchestrator->>Reviewer: Ask for review
+  Reviewer-->>Orchestrator: Approve or request changes
+  Orchestrator-->>User: Report outcome
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> Draft
+  Draft --> Review
+  Review --> Approved
+  Review --> Draft
+  Approved --> [*]
+```
+
 ## Cross-repo use
 
 - Keep this skill repo-agnostic
