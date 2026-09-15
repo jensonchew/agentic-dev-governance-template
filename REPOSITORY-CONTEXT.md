@@ -179,6 +179,7 @@ Angular component, di, directives, forms, http, routing, signals, ssr, testing, 
 - PR convention: merge feature branches → `master` via GitHub PR
 - Documentation expectations: update `REPOSITORY-CONTEXT.md` and `.agents/memory/decisions.md` after any structural or config change
 - Skills convention: agent-invokable skills go in `.agents/skills/`; OpenCode UI skills go in `.opencode/skills/`
+- Framework self-review: use `docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md` and `.opencode/skills/framework-review/SKILL.md` for framework-level changes
 
 ---
 

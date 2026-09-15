@@ -76,6 +76,7 @@ Full behavioral rules: [`.agents/governance/shared-rules.md`](.agents/governance
 - [Output format](.agents/governance/output-format.md)
 - [Handoff template](docs/templates/HANDOFF.md)
 - Automated checks in the repository's workflow system are part of the review and merge path.
+- Framework self-review: `docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md` and `.opencode/skills/framework-review/SKILL.md`.
 
 ### MGF / AI Verify compliance documents
 
