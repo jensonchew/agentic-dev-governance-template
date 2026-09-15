@@ -133,6 +133,10 @@ A weekly GitHub Actions workflow (`.github/workflows/validate-models.yml`) also 
 2. Follow the structure: frontmatter (name, description) → workflow → output format → rules
 3. If the skill bridges to the orchestrator workflow, document the relationship in this file
 
+### Reviewing framework-level changes
+
+When reviewing framework-level changes, use `docs/templates/FRAMEWORK_PR_REVIEW_CHECKLIST.md` to keep the review portable and consistent.
+
 ### Updating stack rules
 
 Re-run `/setup` whenever your tech stack changes materially. The generated
