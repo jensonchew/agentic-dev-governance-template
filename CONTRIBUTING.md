@@ -29,6 +29,12 @@ When updating governance or policy-linked docs, start from
 `docs/templates/GOVERNANCE_UPDATE_CHECKLIST.md` to keep the scope focused and the
 wording consistent.
 
+### 2c. Use the framework self-review checklist
+
+When changing the framework itself, use
+`docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md` to keep the change portable
+and aligned with the repo's governance model.
+
 ### 3. Start working
 
 For any non-trivial task, use the **development orchestrator**:
