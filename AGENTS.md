@@ -75,6 +75,7 @@ Full behavioral rules: [`.agents/governance/shared-rules.md`](.agents/governance
 - [Escalation triggers](.agents/governance/escalation.md)
 - [Output format](.agents/governance/output-format.md)
 - [Handoff template](docs/templates/HANDOFF.md)
+- Automated checks in the repository's workflow system are part of the review and merge path.
 
 ### MGF / AI Verify compliance documents
 
