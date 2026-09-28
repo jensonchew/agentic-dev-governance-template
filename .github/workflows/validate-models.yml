@@ -12,7 +12,7 @@ on:
 jobs:
   validate-models:
     name: Check opencode.json model IDs against Copilot API
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read   # checkout only
       issues: write    # open, comment, and close model-drift issues

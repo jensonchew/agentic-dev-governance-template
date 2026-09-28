@@ -11,7 +11,7 @@ on:
 jobs:
   validate-repo:
     name: Validate docs and repo structure
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
