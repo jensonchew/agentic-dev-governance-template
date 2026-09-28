@@ -167,7 +167,7 @@ Before starting a framework change, confirm:
 - CI is green
 - `/framework-review` is available
 - the relevant checklist is available
-- GitHub Actions jobs currently run on `ubuntu-24.04`
+- GitHub Actions jobs run on pinned `ubuntu-24.04` runners
 
 Before starting framework work, run the repo health checklist in `docs/templates/REPO_HEALTH_CHECKLIST.md`.
 
