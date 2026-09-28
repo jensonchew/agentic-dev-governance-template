@@ -35,6 +35,11 @@ When changing the framework itself, use
 `docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md` to keep the change portable
 and aligned with the repo's governance model.
 
+### 2d. Keep framework changes small
+
+Prefer small, focused framework changes that stay portable, easy to review,
+and easy to maintain.
+
 ### 3. Start working
 
 For any non-trivial task, use the **development orchestrator**:
