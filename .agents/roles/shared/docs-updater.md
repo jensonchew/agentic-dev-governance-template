@@ -21,7 +21,7 @@ This is a shared role.
 It does not choose its own charter context.
 It works under the charter and scope specified by the invoking orchestrator.
 
-If the invoking context is unclear or mixes multiple cells without explicit instruction,
+If the invoking context is unclear or mixes multiple charters without explicit instruction,
 escalate rather than infer.
 
 ## Role
