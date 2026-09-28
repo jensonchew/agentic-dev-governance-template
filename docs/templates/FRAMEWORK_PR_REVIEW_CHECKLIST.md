@@ -19,11 +19,17 @@ Use this checklist when reviewing framework-level changes.
 
 - Does it match the charter split and repo conventions?
 - Is it discoverable from `AGENTS.md` or `REPOSITORY-CONTEXT.md` if needed?
+- Does the review path point to the right checklist or role guidance?
 
 ## Maintenance
 
 - Is it lightweight enough to stay current?
 - Does it need a checklist, skill, or doc pointer?
+
+## Change size
+
+- Is the framework change small enough to review and merge safely?
+- Would splitting it into smaller changes improve clarity?
 
 ## Verification
 
