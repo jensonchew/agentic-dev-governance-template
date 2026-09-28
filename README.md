@@ -81,15 +81,21 @@ Or run `/setup` interactively. This generates:
 - `.agents/instructions-stack.md` with language and framework-specific rules
 - Agent bash permission recommendations for your build tools
 
-### Start here for framework changes
-
-If you're changing the framework itself, start with `CONTRIBUTING.md`. Use the
-framework status check, then the framework dogfood workflow, then the framework
-review path before you open a PR.
-
 ### Review and start
 
 Check that `REPOSITORY-CONTEXT.md` and `instructions-stack.md` match your repository. The development orchestrator will gather context, write specs for non-trivial work, coordinate implementation and review, and hand off to delivery when runtime concerns begin.
+
+## Framework task starter
+
+If you're changing the framework itself, start with:
+1. The framework status check
+2. The framework dogfood workflow
+3. The framework review path
+
+Helpful references:
+- `CONTRIBUTING.md`
+- `docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md`
+- `docs/templates/FRAMEWORK_PR_REVIEW_CHECKLIST.md`
 
 ## Structure
 
