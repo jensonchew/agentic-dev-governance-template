@@ -168,6 +168,8 @@ Before starting a framework change, confirm:
 - `/framework-review` is available
 - the relevant checklist is available
 
+Before starting framework work, run the repo health checklist in `docs/templates/REPO_HEALTH_CHECKLIST.md`.
+
 ### Updating stack rules
 
 Re-run `/setup` whenever your tech stack changes materially. The generated
