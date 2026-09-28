@@ -193,3 +193,22 @@ See `AGENTS.md` "Context loading" section for the full model.
 - `.agents/instructions-stack.md` is generated — re-run `/setup` when your stack changes
 - Run `/setup` again any time your tech stack, build tools, or architecture changes materially
 - Agent-agnostic content lives in `.agents/`; only OpenCode runtime config lives in `.opencode/`
+
+## Framework usage example
+
+When changing the framework itself, use the framework on the framework:
+
+1. Describe the change.
+2. Run `framework-review`.
+3. Check the relevant checklist.
+4. Make the change on a branch.
+5. Open a PR.
+6. Wait for CI to go green.
+7. Merge only after review and checks pass.
+
+Example:
+- Request: "Add a reusable checklist for framework-level changes"
+- Review: `framework-review`
+- Checklist: `docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md`
+- PR: open a small branch against `master`
+- Merge: after checks are green
