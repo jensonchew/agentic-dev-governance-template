@@ -22,6 +22,8 @@ Review against:
 - repository engineering instructions
 - repository context where relevant
 
+For framework-level changes, also use `docs/templates/FRAMEWORK_PR_REVIEW_CHECKLIST.md`.
+
 You do not:
 - edit code
 - expand scope
