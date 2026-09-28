@@ -142,16 +142,22 @@ A weekly GitHub Actions workflow (`.github/workflows/validate-models.yml`) also 
 
 When reviewing framework-level changes, use `docs/templates/FRAMEWORK_PR_REVIEW_CHECKLIST.md` to keep the review portable and consistent.
 
-### Dogfooding the framework
+### Framework dogfood workflow
 
-When changing the framework itself, use the framework on the framework:
-- describe the change
-- run `/framework-review`
-- check the relevant checklist
-- make the change on a branch
-- open a PR
-- wait for CI to go green
-- merge only after review and checks pass
+When changing the framework itself:
+1. Describe the change.
+2. Run the framework review path.
+3. Check the relevant checklist.
+4. Make the change on a branch.
+5. Open a PR.
+6. Wait for CI to go green.
+7. Merge only after review and checks pass.
+
+Helpful references:
+- `docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md`
+- `docs/templates/FRAMEWORK_PR_REVIEW_CHECKLIST.md`
+- `docs/templates/GOVERNANCE_UPDATE_CHECKLIST.md`
+- the framework review path in the repo's tooling
 
 ### Framework status check
 
