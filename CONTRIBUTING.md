@@ -153,6 +153,15 @@ When changing the framework itself, use the framework on the framework:
 - wait for CI to go green
 - merge only after review and checks pass
 
+### Framework status check
+
+Before starting a framework change, confirm:
+- `master` is current
+- there are no open PRs blocking the work
+- CI is green
+- `/framework-review` is available
+- the relevant checklist is available
+
 ### Updating stack rules
 
 Re-run `/setup` whenever your tech stack changes materially. The generated
