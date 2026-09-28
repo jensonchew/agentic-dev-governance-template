@@ -48,7 +48,7 @@ Its primary responsibility is to:
 - Recommend
 - Prioritize
 
-It should not silently turn into an implementation cell.
+It should not silently turn into an implementation charter.
 
 When implementation is proposed, distinguish clearly between:
 - Current state
