@@ -52,6 +52,27 @@ For lightweight, self-contained tasks, use a skill directly (see below).
 
 ---
 
+## Considering a new charter
+
+Before proposing a third or fourth charter, check whether the work can stay as a role, checklist, skill, or handoff inside Development or Delivery.
+
+Propose a new charter only if the work has a stable boundary with:
+- different approval authority
+- different risk or accountability model
+- repeated handoffs that do not fit the current two-charter split
+- a distinct output format or operating cadence
+
+Good candidates for roles or checklists instead of a new charter:
+- review
+- documentation
+- architecture guidance
+- platform checks
+- security review
+
+If you think a new charter is still justified, add a short rationale explaining why the existing two-charter model is not enough.
+
+---
+
 ## Two workflows: orchestrator vs. skills
 
 The template provides two ways to get work done. Knowing which to use is the most important decision.
