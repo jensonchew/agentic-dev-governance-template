@@ -126,24 +126,34 @@ REPOSITORY-CONTEXT.md              # Repository facts, commands, conventions
 │   ├── delivery/                  # Delivery orchestrator + 4 specialists
 │   └── shared/                    # Cross-charter agents
 ├── skills/                        # Reusable skills (agent-agnostic)
-│   ├── diagnose/
-│   ├── tdd/
-│   ├── zoom-out/
 │   ├── caveman/
+│   ├── code-review/
+│   ├── diagnose/
 │   ├── grill-me/
 │   ├── grill-with-docs/
-│   └── handoff/
+│   ├── handoff/
+│   ├── implement/
+│   ├── research/
+│   ├── resolving-merge-conflicts/
+│   ├── tdd/
+│   ├── to-spec/
+│   ├── to-tickets/
+│   ├── wrap-up/
+│   └── zoom-out/
 └── memory/                        # Append-only logs
     ├── decisions.md
     └── lessons.md
 
 .opencode/
-├── skills/                        # OpenCode-specific skills (design-system, etc.)
+├── skills/                        # OpenCode-specific skills (setup, framework-review, Angular, etc.)
 └── (opencode.json at repo root)   # Agent runtime config (models, permissions)
 
 docs/
-└── templates/
-    └── HANDOFF.md                 # Cross-charter handoff template
+├── IDE_ADAPTERS.md                # Cursor, Zed, VS Code, and OpenCode setup
+├── adr/                           # Architecture decision records
+├── examples/                      # Editor quickstarts
+├── governance/                    # MGF / AI Verify compliance docs
+└── templates/                     # Handoff and review checklists
 ```
 
 ## Context loading model

@@ -137,6 +137,7 @@ Place skill files under `.agents/skills/<skill-name>/SKILL.md`.
 | `handoff` | mattpocock/skills | Compact conversation into handoff doc |
 | `zoom-out` | internal | Higher-level codebase perspective |
 | `caveman` | internal | Ultra-compressed communication mode |
+| `wrap-up` | internal | Close the session and record decisions and lessons |
 | `to-spec` | mattpocock/skills | Synthesize conversation into structured spec |
 | `to-tickets` | mattpocock/skills | Break spec/plan into tracer-bullet tickets |
 | `implement` | mattpocock/skills | End-to-end implement with TDD + code-review |
@@ -146,7 +147,9 @@ Place skill files under `.agents/skills/<skill-name>/SKILL.md`.
 
 ### `.opencode/skills/` (OpenCode UI skills)
 
-Angular component, di, directives, forms, http, routing, signals, ssr, testing, tooling, design-system, frontend-design, setup, theme-factory, web-artifacts-builder, webapp-testing, mermaid, tldraw.
+- Angular: component, di, directives, forms, http, routing, signals, ssr, testing, tooling
+- Setup and maintenance: `setup`, `setup-matt-pocock-skills`, `check-models`, `framework-review`
+- Design and docs: design-system, frontend-design, theme-factory, web-artifacts-builder, webapp-testing, mermaid, tldraw
 
 ### `/setup` flow
 
