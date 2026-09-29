@@ -123,7 +123,7 @@ deployment without human oversight.
 | Gap | Status | Mitigation plan |
 |-----|--------|----------------|
 | No automated prompt injection detection | Accepted | No ingest path in this template. Control is the shared rule and the escalation trigger. Reopen content screening only in a runtime that grants broad web access |
-| No per-session action log | Open | Rely on git history and lessons.md for now |
+| No per-session action log | Accepted | Session audit is out of scope for this template. The record is git history, decisions and lessons written at wrap-up, and the host session transcript preserved under incident reporting. Reopen only in a runtime that executes agents |
 | Non-determinism in governance interpretation | Accepted | Low temperature + human review gate |
 | No formal repeatability testing | Accepted | No executable agent runtime in this template. Same control as R6: low temperature, explicit rules, and the human review gate |
 

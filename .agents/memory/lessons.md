@@ -77,3 +77,9 @@ Captures what worked, what failed, and what to avoid next time.
 **Lesson:** When external governance sources change in a way that affects operational controls, reflect the delta directly in the repo's risk, oversight, and incident documents rather than only linking the source.
 **Applies to:** Any governance template that tracks AI governance frameworks or regulatory guidance over time.
 
+## 2026-09-29 — An Open limitation the template already excludes is a queued build
+
+**What happened:** The safety assessment left repeatability testing, automated prompt-injection detection, and a per-session action log Open. Each one is a runtime control. This repository does not run agents, and README already places session audit outside the template.
+**Lesson:** When a limitation describes a control the template has already placed out of scope, mark it Accepted and name the substitute record. An Open status implies a build that is not coming.
+**Applies to:** Safety-assessment updates and any gap list in this template.
+

@@ -144,3 +144,10 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 **Alternatives rejected:** Build a scanner in this repo (nothing to attach it to); leave the gap Open (implies a queued detector and keeps the inaccurate webfetch claim).
 **Rationale:** Instruction-following plus escalation is the control this layer can actually provide. Residual risk stays Medium. A content scanner belongs next to the fetch, in the runtime that performs it.
 
+## 2026-09-29 — Accept the per-session action log as a residual limitation
+
+**Context:** The safety assessment listed "no per-session action log" as an open gap, with a plan to rely on git history and lessons.md for now. README already places session audit outside this template. Incident reporting already says to preserve the host session transcript.
+**Decision:** Mark the gap Accepted. Do not add a session action logger to this template. The record is git history for committed changes, `decisions.md` and `lessons.md` written at wrap-up, and the host transcript preserved when reporting an incident. Reopen a real action log only in a runtime that executes agents.
+**Alternatives rejected:** Build a logger in this repo (no session to record); leave the gap Open (implies a queued logger the README has already ruled out).
+**Rationale:** The host that runs the agent already keeps the action-level transcript. This template keeps the record that survives the session.
+
