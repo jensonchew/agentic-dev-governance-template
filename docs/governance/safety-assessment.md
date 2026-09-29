@@ -136,5 +136,5 @@ Update this assessment when:
 - The operating environment changes (e.g., agents gain production access)
 - Annual governance review is due
 
-Last reviewed: `<replace: date>`
-Reviewed by: `<replace: name and role>`
+Last reviewed: 2026-09-29
+Reviewed by: Jenson Chew
