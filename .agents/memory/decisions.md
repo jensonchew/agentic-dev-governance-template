@@ -137,3 +137,17 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 **Alternatives rejected:** Build a formal repeatability suite in this repo (no runtime to test); leave the gap Open with "future governance review" (implies a queued build that does not fit the template).
 **Rationale:** Inconsistent governance interpretation is the non-determinism already accepted under R6. A suite that executes agents belongs in a repository that runs them.
 
+## 2026-09-29 — Accept automated prompt-injection detection as a residual limitation
+
+**Context:** The safety assessment listed "no automated prompt injection detection" as an open gap and recommended content screening if web access expanded. It also said `webfetch` was controlled per agent. `opencode.json` sets edit and bash permissions only. It does not grant a web-fetch permission, and this repository has no ingest path that could run a scanner.
+**Decision:** Mark the gap Accepted. Do not add a detector to this template. The control is the shared rule and the escalation trigger. Correct the R3 control text so it matches `opencode.json`. Reopen content screening only in a runtime that grants agents broad web access.
+**Alternatives rejected:** Build a scanner in this repo (nothing to attach it to); leave the gap Open (implies a queued detector and keeps the inaccurate webfetch claim).
+**Rationale:** Instruction-following plus escalation is the control this layer can actually provide. Residual risk stays Medium. A content scanner belongs next to the fetch, in the runtime that performs it.
+
+## 2026-09-29 — Accept the per-session action log as a residual limitation
+
+**Context:** The safety assessment listed "no per-session action log" as an open gap, with a plan to rely on git history and lessons.md for now. README already places session audit outside this template. Incident reporting already says to preserve the host session transcript.
+**Decision:** Mark the gap Accepted. Do not add a session action logger to this template. The record is git history for committed changes, `decisions.md` and `lessons.md` written at wrap-up, and the host transcript preserved when reporting an incident. Reopen a real action log only in a runtime that executes agents.
+**Alternatives rejected:** Build a logger in this repo (no session to record); leave the gap Open (implies a queued logger the README has already ruled out).
+**Rationale:** The host that runs the agent already keeps the action-level transcript. This template keeps the record that survives the session.
+

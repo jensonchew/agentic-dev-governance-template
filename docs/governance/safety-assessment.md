@@ -58,11 +58,13 @@ fetch external content.
 **Impact:** High — could cause scope expansion, data exfiltration, or
 unauthorised commits.
 **Control:** Shared rule prohibiting agents from following instructions in
-tool results. Escalation trigger for suspected injection. `webfetch` permission
-controlled per agent.
-**Residual risk:** Medium — no automated injection detection; relies on agent
-instruction-following. Recommend adding automated content screening if agents
-are granted broad web access.
+tool results, file reads, or external data. Escalation trigger for suspected
+injection. `opencode.json` does not grant a web-fetch permission. Edit access
+is denied except for the agents allowed to write, and bash is limited to a
+narrow allowlist.
+**Residual risk:** Medium — acceptable for this template. The control is the
+shared rule and escalation, not an automated scanner. Content screening belongs
+in a runtime that grants agents broad web access.
 
 ### R4 — Hallucination with consequence
 **Description:** An agent asserts a fact it did not verify (e.g., claims a
@@ -120,8 +122,8 @@ deployment without human oversight.
 
 | Gap | Status | Mitigation plan |
 |-----|--------|----------------|
-| No automated prompt injection detection | Open | Manual rule only; consider content screening if web access expands |
-| No per-session action log | Open | Rely on git history and lessons.md for now |
+| No automated prompt injection detection | Accepted | No ingest path in this template. Control is the shared rule and the escalation trigger. Reopen content screening only in a runtime that grants broad web access |
+| No per-session action log | Accepted | Session audit is out of scope for this template. The record is git history, decisions and lessons written at wrap-up, and the host session transcript preserved under incident reporting. Reopen only in a runtime that executes agents |
 | Non-determinism in governance interpretation | Accepted | Low temperature + human review gate |
 | No formal repeatability testing | Accepted | No executable agent runtime in this template. Same control as R6: low temperature, explicit rules, and the human review gate |
 
