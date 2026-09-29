@@ -130,3 +130,10 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 **Alternatives rejected:** Leaving the docs at the January 2026 framing (would miss the updated guidance); summarising the update only in conversation (would not persist for future sessions); overfitting the docs to specific vendor examples (would reduce portability).
 **Rationale:** The May update materially strengthens the governance template's agentic AI guidance and should be reflected in the living repo docs.
 
+## 2026-09-29 — Accept repeatability testing as a residual limitation
+
+**Context:** The safety assessment listed "no formal repeatability testing" as an open gap, with a plan to add it in a future governance review. This repository is governance markdown and JSON only. It does not run agents, so a repeatability suite would have nothing here to execute.
+**Decision:** Mark the gap Accepted. Do not add an agent-behaviour test harness to this template. The control remains the R6 control: low temperature for governance-sensitive agents, explicit rule language, and the human review gate.
+**Alternatives rejected:** Build a formal repeatability suite in this repo (no runtime to test); leave the gap Open with "future governance review" (implies a queued build that does not fit the template).
+**Rationale:** Inconsistent governance interpretation is the non-determinism already accepted under R6. A suite that executes agents belongs in a repository that runs them.
+

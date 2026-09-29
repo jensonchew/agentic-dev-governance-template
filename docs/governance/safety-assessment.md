@@ -116,14 +116,14 @@ deployment without human oversight.
 
 ---
 
-## Limitations and mitigations not yet in place
+## Known limitations
 
 | Gap | Status | Mitigation plan |
 |-----|--------|----------------|
 | No automated prompt injection detection | Open | Manual rule only; consider content screening if web access expands |
 | No per-session action log | Open | Rely on git history and lessons.md for now |
 | Non-determinism in governance interpretation | Accepted | Low temperature + human review gate |
-| No formal repeatability testing | Open | Add to future governance review |
+| No formal repeatability testing | Accepted | No executable agent runtime in this template. Same control as R6: low temperature, explicit rules, and the human review gate |
 
 ---
 
@@ -136,5 +136,5 @@ Update this assessment when:
 - The operating environment changes (e.g., agents gain production access)
 - Annual governance review is due
 
-Last reviewed: `<replace: date>`
-Reviewed by: `<replace: name and role>`
+Last reviewed: 2026-09-29
+Reviewed by: Jenson Chew
