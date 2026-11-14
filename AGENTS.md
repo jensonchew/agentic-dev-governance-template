@@ -75,6 +75,7 @@ Full behavioral rules: [`.agents/governance/shared-rules.md`](.agents/governance
 - [Escalation triggers](.agents/governance/escalation.md)
 - [Output format](.agents/governance/output-format.md)
 - [Handoff template](docs/templates/HANDOFF.md)
+- [Framework alignment note (14 Nov 2026)](docs/governance/framework-alignment-2026-11.md) — why the structural-control and reassessment rules exist. Not a certification.
 - Automated checks in the repository's workflow system are part of the review and merge path.
 - Framework self-review: `docs/templates/FRAMEWORK_SELF_REVIEW_CHECKLIST.md` and `.opencode/skills/framework-review/SKILL.md`.
 - Framework PR review: `docs/templates/FRAMEWORK_PR_REVIEW_CHECKLIST.md` and `.agents/roles/development/reviewer.md`.

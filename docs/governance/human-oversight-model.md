@@ -116,6 +116,18 @@ Any suspected injection must be escalated rather than followed.
 
 ---
 
+## Where the control lives
+
+Higher-risk actions are denied or set to ask in permissions and role files.
+Telling the agent, in a prompt, not to take the action is a backstop.
+
+A new tool, MCP server, fetch permission, model on the roster, or charter
+change reopens [`safety-assessment.md`](./safety-assessment.md) before the grant.
+Why this was added, and which outside documents it tracks, is in
+[`framework-alignment-2026-11.md`](./framework-alignment-2026-11.md).
+
+---
+
 ## Review and update guidance
 
 Review this model when:
