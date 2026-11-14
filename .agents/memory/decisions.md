@@ -151,3 +151,10 @@ Companion updates: `shared-rules.md` (reversibility principle + prompt injection
 **Alternatives rejected:** Build a logger in this repo (no session to record); leave the gap Open (implies a queued logger the README has already ruled out).
 **Rationale:** The host that runs the agent already keeps the action-level transcript. This template keeps the record that survives the session.
 
+## 2026-11-14 — Structural limits and a reassessment trigger
+
+**Context:** IMDA MGF for Agentic AI v1.5 (20 May 2026, updated 5 June 2026) prefers structural and rule-based controls over prompt-layer instructions for higher-risk actions, and asks for change review when a complex agent setup changes. CSA’s 17 June 2026 addendum uses a coding assistant as a worked example. On 6 October 2026 MDDI restated that telling an agent what to do is not a sufficient limit.
+**Decision:** Add two shared rules: enforce higher-risk limits in permissions, role files, or tool registration; reopen the safety assessment before granting a new tool, MCP server, fetch permission, model, or charter change. Explain the sources in `docs/governance/framework-alignment-2026-11.md`. Do not add a session audit logger.
+**Alternatives rejected:** Cite the frameworks inside every role file (goes stale and breaks the framework-agnostic rule); copy a runtime session log into this template (accepted as out of scope on 29 Sep 2026).
+**Rationale:** The template’s actual control is the permission boundary. The note exists so a later editor can see why the rule was added without turning `AGENTS.md` into a compliance memo.
+

@@ -10,6 +10,11 @@ The May 2026 IMDA update adds real-world case studies and best practices for
 multi-agent systems, third-party agents, and automation bias. Use those updates as
 evidence for the controls below.
 
+November 2026 practice (CSA’s coding-assistant addendum, and the 6 October 2026
+ministerial line that instructions alone are not a control) is recorded in
+[`framework-alignment-2026-11.md`](./framework-alignment-2026-11.md). The rules
+stay in permissions and shared rules. This file does not become a legal memo.
+
 ---
 
 ## Scope
@@ -138,5 +143,5 @@ Update this assessment when:
 - The operating environment changes (e.g., agents gain production access)
 - Annual governance review is due
 
-Last reviewed: 2026-09-29
+Last reviewed: 2026-11-14
 Reviewed by: Jenson Chew
